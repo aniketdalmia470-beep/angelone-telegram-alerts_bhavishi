@@ -1,0 +1,722 @@
+{
+  "AACI043934|CEIGALL-EQ": {
+    "account": "Roshan lal",
+    "stock": "CEIGALL-EQ",
+    "qty": 974
+  },
+  "AACI043934|TTML-EQ": {
+    "account": "Roshan lal",
+    "stock": "TTML-EQ",
+    "qty": 357
+  },
+  "AACI043934|SPACEINCUBA": {
+    "account": "Roshan lal",
+    "stock": "SPACEINCUBA",
+    "qty": 3400
+  },
+  "AACI043934|ROUTE-EQ": {
+    "account": "Roshan lal",
+    "stock": "ROUTE-EQ",
+    "qty": 215
+  },
+  "AACI043934|JARO-EQ": {
+    "account": "Roshan lal",
+    "stock": "JARO-EQ",
+    "qty": 16
+  },
+  "AACI043934|NTPC-EQ": {
+    "account": "Roshan lal",
+    "stock": "NTPC-EQ",
+    "qty": 1
+  },
+  "AACI043934|HDBFS-EQ": {
+    "account": "Roshan lal",
+    "stock": "HDBFS-EQ",
+    "qty": 524
+  },
+  "AACI043934|MUKKA-BE": {
+    "account": "Roshan lal",
+    "stock": "MUKKA-BE",
+    "qty": 2500
+  },
+  "AACI043934|RBA-EQ": {
+    "account": "Roshan lal",
+    "stock": "RBA-EQ",
+    "qty": 501
+  },
+  "AACI043934|JPPOWER-EQ": {
+    "account": "Roshan lal",
+    "stock": "JPPOWER-EQ",
+    "qty": 100
+  },
+  "AACI043934|LICI-EQ": {
+    "account": "Roshan lal",
+    "stock": "LICI-EQ",
+    "qty": 14
+  },
+  "AACI043934|GKENERGY-EQ": {
+    "account": "Roshan lal",
+    "stock": "GKENERGY-EQ",
+    "qty": 98
+  },
+  "AACI043934|VIKRAMSOLR-EQ": {
+    "account": "Roshan lal",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 245
+  },
+  "AACI043934|HDIL-BZ": {
+    "account": "Roshan lal",
+    "stock": "HDIL-BZ",
+    "qty": 150
+  },
+  "AACI043934|IFCI-EQ": {
+    "account": "Roshan lal",
+    "stock": "IFCI-EQ",
+    "qty": 600
+  },
+  "AACI043934|HDFCLIFE-EQ": {
+    "account": "Roshan lal",
+    "stock": "HDFCLIFE-EQ",
+    "qty": 50
+  },
+  "AACI043934|CLEAN-EQ": {
+    "account": "Roshan lal",
+    "stock": "CLEAN-EQ",
+    "qty": 16
+  },
+  "AACI043592|SIGACHI-EQ": {
+    "account": "Aniket",
+    "stock": "SIGACHI-EQ",
+    "qty": 1000
+  },
+  "AACI043592|VEEDOL-EQ": {
+    "account": "Aniket",
+    "stock": "VEEDOL-EQ",
+    "qty": 5
+  },
+  "AACI043592|LXCHEM-EQ": {
+    "account": "Aniket",
+    "stock": "LXCHEM-EQ",
+    "qty": 100
+  },
+  "AACI043592|BASILIC-SM": {
+    "account": "Aniket",
+    "stock": "BASILIC-SM",
+    "qty": 300
+  },
+  "AACI043592|FCSSOFT-EQ": {
+    "account": "Aniket",
+    "stock": "FCSSOFT-EQ",
+    "qty": 1000
+  },
+  "AACI043592|RELIANCE-EQ": {
+    "account": "Aniket",
+    "stock": "RELIANCE-EQ",
+    "qty": 1
+  },
+  "AACI043592|EASEMYTRIP-EQ": {
+    "account": "Aniket",
+    "stock": "EASEMYTRIP-EQ",
+    "qty": 1900
+  },
+  "AACI043592|VMSTMT-EQ": {
+    "account": "Aniket",
+    "stock": "VMSTMT-EQ",
+    "qty": 1000
+  },
+  "AACI043592|TCS-EQ": {
+    "account": "Aniket",
+    "stock": "TCS-EQ",
+    "qty": 12
+  },
+  "AACI063602|SBICARD-EQ": {
+    "account": "Bhumika",
+    "stock": "SBICARD-EQ",
+    "qty": 90
+  },
+  "AACI063602|TONBO-EQ": {
+    "account": "Bhumika",
+    "stock": "TONBO-EQ",
+    "qty": 225
+  },
+  "AACI063602|BASILIC-SM": {
+    "account": "Bhumika",
+    "stock": "BASILIC-SM",
+    "qty": 300
+  },
+  "AACI063602|TEMPSENS-EQ": {
+    "account": "Bhumika",
+    "stock": "TEMPSENS-EQ",
+    "qty": 50
+  },
+  "AACI063602|SHAREINDIA-EQ": {
+    "account": "Bhumika",
+    "stock": "SHAREINDIA-EQ",
+    "qty": 400
+  },
+  "R297279|HDBFS-EQ": {
+    "account": "Rakesh Bansal",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "R297279|CEIGALL-EQ": {
+    "account": "Rakesh Bansal",
+    "stock": "CEIGALL-EQ",
+    "qty": 37
+  },
+  "R297279|BASILIC-SM": {
+    "account": "Rakesh Bansal",
+    "stock": "BASILIC-SM",
+    "qty": 1200
+  },
+  "AAAC015110|HDBFS-EQ": {
+    "account": "Kashish Bansal",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "R282962|TONBO-EQ": {
+    "account": "Reena devi",
+    "stock": "TONBO-EQ",
+    "qty": 230
+  },
+  "R282962|ROUTE-EQ": {
+    "account": "Reena devi",
+    "stock": "ROUTE-EQ",
+    "qty": 50
+  },
+  "R282962|CEIGALL-EQ": {
+    "account": "Reena devi",
+    "stock": "CEIGALL-EQ",
+    "qty": 37
+  },
+  "R282962|RBA-EQ": {
+    "account": "Reena devi",
+    "stock": "RBA-EQ",
+    "qty": 301
+  },
+  "R282962|GRINFRA-EQ": {
+    "account": "Reena devi",
+    "stock": "GRINFRA-EQ",
+    "qty": 17
+  },
+  "R282962|HDFCBANK-EQ": {
+    "account": "Reena devi",
+    "stock": "HDFCBANK-EQ",
+    "qty": 38
+  },
+  "R282962|RHFL-BZ": {
+    "account": "Reena devi",
+    "stock": "RHFL-BZ",
+    "qty": 40
+  },
+  "R282962|ONMOBILE-EQ": {
+    "account": "Reena devi",
+    "stock": "ONMOBILE-EQ",
+    "qty": 500
+  },
+  "R282962|SUPRIYA-EQ": {
+    "account": "Reena devi",
+    "stock": "SUPRIYA-EQ",
+    "qty": 55
+  },
+  "R282962|TENNIND-EQ": {
+    "account": "Reena devi",
+    "stock": "TENNIND-EQ",
+    "qty": 37
+  },
+  "R282962|TTML-EQ": {
+    "account": "Reena devi",
+    "stock": "TTML-EQ",
+    "qty": 226
+  },
+  "R282962|SIGACHI-EQ": {
+    "account": "Reena devi",
+    "stock": "SIGACHI-EQ",
+    "qty": 4195
+  },
+  "R282962|WELSPUNLIV-EQ": {
+    "account": "Reena devi",
+    "stock": "WELSPUNLIV-EQ",
+    "qty": 123
+  },
+  "R282962|RPOWER-EQ": {
+    "account": "Reena devi",
+    "stock": "RPOWER-EQ",
+    "qty": 187
+  },
+  "R282962|VARROC-EQ": {
+    "account": "Reena devi",
+    "stock": "VARROC-EQ",
+    "qty": 15
+  },
+  "R282962|RELIANCE-EQ": {
+    "account": "Reena devi",
+    "stock": "RELIANCE-EQ",
+    "qty": 7
+  },
+  "R282962|EASEMYTRIP-EQ": {
+    "account": "Reena devi",
+    "stock": "EASEMYTRIP-EQ",
+    "qty": 4160
+  },
+  "R282962|ADANIGREEN-EQ": {
+    "account": "Reena devi",
+    "stock": "ADANIGREEN-EQ",
+    "qty": 30
+  },
+  "R282962|LICI-EQ": {
+    "account": "Reena devi",
+    "stock": "LICI-EQ",
+    "qty": 60
+  },
+  "R282962|RELINFRA-BE": {
+    "account": "Reena devi",
+    "stock": "RELINFRA-BE",
+    "qty": 30
+  },
+  "R282962|JIOFIN-EQ": {
+    "account": "Reena devi",
+    "stock": "JIOFIN-EQ",
+    "qty": 66
+  },
+  "R282962|BAJAJHIND-EQ": {
+    "account": "Reena devi",
+    "stock": "BAJAJHIND-EQ",
+    "qty": 150
+  },
+  "R282962|CLEAN-EQ": {
+    "account": "Reena devi",
+    "stock": "CLEAN-EQ",
+    "qty": 20
+  },
+  "R282962|HDBFS-EQ": {
+    "account": "Reena devi",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "R282962|HAPPSTMNDS-EQ": {
+    "account": "Reena devi",
+    "stock": "HAPPSTMNDS-EQ",
+    "qty": 15
+  },
+  "R282962|HERANBA-EQ": {
+    "account": "Reena devi",
+    "stock": "HERANBA-EQ",
+    "qty": 23
+  },
+  "R282962|BAJAJHFL-EQ": {
+    "account": "Reena devi",
+    "stock": "BAJAJHFL-EQ",
+    "qty": 1161
+  },
+  "AAAF368129|NAZARA-EQ": {
+    "account": "Rukmani devi",
+    "stock": "NAZARA-EQ",
+    "qty": 240
+  },
+  "AAAF368129|CAMS-EQ": {
+    "account": "Rukmani devi",
+    "stock": "CAMS-EQ",
+    "qty": 7
+  },
+  "AAAF368129|VIKRAMSOLR-EQ": {
+    "account": "Rukmani devi",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 45
+  },
+  "AAAF368129|CEIGALL-EQ": {
+    "account": "Rukmani devi",
+    "stock": "CEIGALL-EQ",
+    "qty": 74
+  },
+  "AAAF368129|IBULLSLTD-EQ": {
+    "account": "Rukmani devi",
+    "stock": "IBULLSLTD-EQ",
+    "qty": 605
+  },
+  "AAAF368129|WELSPUNLIV-EQ": {
+    "account": "Rukmani devi",
+    "stock": "WELSPUNLIV-EQ",
+    "qty": 200
+  },
+  "AAAF368129|TTML-EQ": {
+    "account": "Rukmani devi",
+    "stock": "TTML-EQ",
+    "qty": 100
+  },
+  "AAAF368129|SHAREINDIA-EQ": {
+    "account": "Rukmani devi",
+    "stock": "SHAREINDIA-EQ",
+    "qty": 200
+  },
+  "AAAF368129|BAJAJHFL-EQ": {
+    "account": "Rukmani devi",
+    "stock": "BAJAJHFL-EQ",
+    "qty": 9
+  },
+  "AAAF368129|MUKKA-BE": {
+    "account": "Rukmani devi",
+    "stock": "MUKKA-BE",
+    "qty": 2462
+  },
+  "AAAF368129|SIGACHI-EQ": {
+    "account": "Rukmani devi",
+    "stock": "SIGACHI-EQ",
+    "qty": 2454
+  },
+  "R597315|HDBFS-EQ": {
+    "account": "RIYA",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "S54748898|VIKRAMSOLR-EQ": {
+    "account": "Seema devi",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 45
+  },
+  "S54748898|HDBFS-EQ": {
+    "account": "Seema devi",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "AACI064276|MONEYVIEW-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "MONEYVIEW-EQ",
+    "qty": 5900
+  },
+  "AACI064276|SONACOMS-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "SONACOMS-EQ",
+    "qty": 50
+  },
+  "AACI064276|KRETTOSYS": {
+    "account": "RAJESH KUMAR",
+    "stock": "KRETTOSYS",
+    "qty": 10800
+  },
+  "AACI064276|TONBO-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "TONBO-EQ",
+    "qty": 1000
+  },
+  "AACI064276|DRCSYSTEMS-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "DRCSYSTEMS-EQ",
+    "qty": 30
+  },
+  "AACI064276|SYMBIOTEC-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "SYMBIOTEC-EQ",
+    "qty": 750
+  },
+  "AACI064276|SUVIDHAA-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "SUVIDHAA-EQ",
+    "qty": 65
+  },
+  "AACI064276|BSOFT-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "BSOFT-EQ",
+    "qty": 30
+  },
+  "AACI064276|NAZARA-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "NAZARA-EQ",
+    "qty": 685
+  },
+  "AACI064276|SIGACHI-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "SIGACHI-EQ",
+    "qty": 1000
+  },
+  "AACI064276|SHAREINDIA-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "SHAREINDIA-EQ",
+    "qty": 400
+  },
+  "AACI064276|MUKKA-BE": {
+    "account": "RAJESH KUMAR",
+    "stock": "MUKKA-BE",
+    "qty": 955
+  },
+  "AACI064276|TTML-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "TTML-EQ",
+    "qty": 350
+  },
+  "AACI064276|GVFILM": {
+    "account": "RAJESH KUMAR",
+    "stock": "GVFILM",
+    "qty": 5000
+  },
+  "AACI064276|FILATFASH-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "FILATFASH-EQ",
+    "qty": 10000
+  },
+  "AACI064276|ATLANTAELE-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "ATLANTAELE-EQ",
+    "qty": 17
+  },
+  "AACI064276|LICI-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "LICI-EQ",
+    "qty": 26
+  },
+  "AACI064276|WELSPUNLIV-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "WELSPUNLIV-EQ",
+    "qty": 200
+  },
+  "AACI064276|VIKRAMSOLR-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 400
+  },
+  "AACI064276|ANGELONE-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "ANGELONE-EQ",
+    "qty": 2362
+  },
+  "AACI064276|MTNL-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "MTNL-EQ",
+    "qty": 2001
+  },
+  "AACI064276|RELIANCE-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "RELIANCE-EQ",
+    "qty": 1
+  },
+  "AACI064276|CENTEXT-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "CENTEXT-EQ",
+    "qty": 500
+  },
+  "AACI064276|INDIAMART-EQ": {
+    "account": "RAJESH KUMAR",
+    "stock": "INDIAMART-EQ",
+    "qty": 20
+  },
+  "D54745460|NTPC-EQ": {
+    "account": "Diksha Bansal",
+    "stock": "NTPC-EQ",
+    "qty": 1
+  },
+  "D54745460|HDBFS-EQ": {
+    "account": "Diksha Bansal",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "D54745460|VIKRAMSOLR-EQ": {
+    "account": "Diksha Bansal",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 45
+  },
+  "D54745460|RBA-EQ": {
+    "account": "Diksha Bansal",
+    "stock": "RBA-EQ",
+    "qty": 1
+  },
+  "D54745460|TEMPSENS-EQ": {
+    "account": "Diksha Bansal",
+    "stock": "TEMPSENS-EQ",
+    "qty": 50
+  },
+  "S1136788|RBA-EQ": {
+    "account": "SANJU DEVI",
+    "stock": "RBA-EQ",
+    "qty": 1
+  },
+  "S1136788|CEIGALL-EQ": {
+    "account": "SANJU DEVI",
+    "stock": "CEIGALL-EQ",
+    "qty": 37
+  },
+  "S1136788|HDBFS-EQ": {
+    "account": "SANJU DEVI",
+    "stock": "HDBFS-EQ",
+    "qty": 84
+  },
+  "R53517293|NTPC-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "NTPC-EQ",
+    "qty": 1
+  },
+  "R53517293|HDBFS-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "HDBFS-EQ",
+    "qty": 109
+  },
+  "R53517293|RELIANCE-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "RELIANCE-EQ",
+    "qty": 1
+  },
+  "R53517293|VIKRAMSOLR-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 173
+  },
+  "R53517293|ATLANTAELE-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "ATLANTAELE-EQ",
+    "qty": 19
+  },
+  "R53517293|AFCONS-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "AFCONS-EQ",
+    "qty": 240
+  },
+  "R53517293|HAPPSTMNDS-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "HAPPSTMNDS-EQ",
+    "qty": 100
+  },
+  "R53517293|ROUTE-EQ": {
+    "account": "Rajender Kumar",
+    "stock": "ROUTE-EQ",
+    "qty": 350
+  },
+  "AACH009422|HDBFS-EQ": {
+    "account": "Narender Garg",
+    "stock": "HDBFS-EQ",
+    "qty": 20
+  },
+  "AACH009422|APTUS-EQ": {
+    "account": "Narender Garg",
+    "stock": "APTUS-EQ",
+    "qty": 42
+  },
+  "AACH009422|VIKRAMSOLR-EQ": {
+    "account": "Narender Garg",
+    "stock": "VIKRAMSOLR-EQ",
+    "qty": 45
+  },
+  "P63048331|BAJAJHFL-EQ": {
+    "account": "Peeyush Sharma",
+    "stock": "BAJAJHFL-EQ",
+    "qty": 214
+  },
+  "P63048331|HDBFS-EQ": {
+    "account": "Peeyush Sharma",
+    "stock": "HDBFS-EQ",
+    "qty": 20
+  },
+  "AACM885810|HDBFS-EQ": {
+    "account": "Saroj devi",
+    "stock": "HDBFS-EQ",
+    "qty": 20
+  },
+  "AACM885810|PCJEWELLER-EQ": {
+    "account": "Saroj devi",
+    "stock": "PCJEWELLER-EQ",
+    "qty": 1
+  },
+  "AACM872342|HDBFS-EQ": {
+    "account": "GOURAV DHURIA",
+    "stock": "HDBFS-EQ",
+    "qty": 42
+  },
+  "AACM873426|JARO-EQ": {
+    "account": "Rajni Bala",
+    "stock": "JARO-EQ",
+    "qty": 16
+  },
+  "AACM873426|TRUALT-EQ": {
+    "account": "Rajni Bala",
+    "stock": "TRUALT-EQ",
+    "qty": 30
+  },
+  "AACM873426|IDEA-EQ": {
+    "account": "Rajni Bala",
+    "stock": "IDEA-EQ",
+    "qty": 1
+  },
+  "AACM873426|HDBFS-EQ": {
+    "account": "Rajni Bala",
+    "stock": "HDBFS-EQ",
+    "qty": 20
+  },
+  "AACM848071|IDEA-EQ": {
+    "account": "Baby",
+    "stock": "IDEA-EQ",
+    "qty": 1
+  },
+  "AACM848071|HDBFS-EQ": {
+    "account": "Baby",
+    "stock": "HDBFS-EQ",
+    "qty": 20
+  },
+  "AACM846943|IDEA-EQ": {
+    "account": "Sandeep Singharia",
+    "stock": "IDEA-EQ",
+    "qty": 1
+  },
+  "AACM846943|HDBFS-EQ": {
+    "account": "Sandeep Singharia",
+    "stock": "HDBFS-EQ",
+    "qty": 40
+  },
+  "AACM846943|TRUALT-EQ": {
+    "account": "Sandeep Singharia",
+    "stock": "TRUALT-EQ",
+    "qty": 58
+  },
+  "AACM846943|MONEYVIEW-EQ": {
+    "account": "Sandeep Singharia",
+    "stock": "MONEYVIEW-EQ",
+    "qty": 888
+  },
+  "AACM846943|IGIL-EQ": {
+    "account": "Sandeep Singharia",
+    "stock": "IGIL-EQ",
+    "qty": 70
+  },
+  "AACM853089|HDBFS-EQ": {
+    "account": "Mukesh Kumar Narang",
+    "stock": "HDBFS-EQ",
+    "qty": 20
+  },
+  "AACM853089|RBA-EQ": {
+    "account": "Mukesh Kumar Narang",
+    "stock": "RBA-EQ",
+    "qty": 1
+  },
+  "AACM853089|IDEA-EQ": {
+    "account": "Mukesh Kumar Narang",
+    "stock": "IDEA-EQ",
+    "qty": 1
+  },
+  "AAAH788468|HDBFS-EQ": {
+    "account": "Monika devi",
+    "stock": "HDBFS-EQ",
+    "qty": 116
+  },
+  "AAAA932378|ANGELONE-EQ": {
+    "account": "ATMA RAM",
+    "stock": "ANGELONE-EQ",
+    "qty": 216
+  },
+  "AAAA932378|HDBFS-EQ": {
+    "account": "ATMA RAM",
+    "stock": "HDBFS-EQ",
+    "qty": 52
+  },
+  "AAAA932378|TRUALT-EQ": {
+    "account": "ATMA RAM",
+    "stock": "TRUALT-EQ",
+    "qty": 30
+  },
+  "AAAA932378|MONEYVIEW-EQ": {
+    "account": "ATMA RAM",
+    "stock": "MONEYVIEW-EQ",
+    "qty": 442
+  },
+  "AAAA932378|BAJAJHFL-EQ": {
+    "account": "ATMA RAM",
+    "stock": "BAJAJHFL-EQ",
+    "qty": 4
+  }
+}
