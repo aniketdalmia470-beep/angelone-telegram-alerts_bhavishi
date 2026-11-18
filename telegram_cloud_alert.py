@@ -6,7 +6,7 @@ import requests
 from SmartApi import SmartConnect
 
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "YOUR_BOT_TOKEN_HERE")
-TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID", "YOUR_CHAT_ID_HERE")
+TELEGRAM_CHAT_ID = str(os.environ.get("TELEGRAM_CHAT_ID", "YOUR_CHAT_ID_HERE"))
 STATE_FILE = "holdings_state.json"
 
 # Paste your 24 ACCOUNTS list here
@@ -237,40 +237,154 @@ ACCOUNTS = [
     },
 ]
 
-def send_telegram_alert(message):
+def send_telegram_alert(message, chat_id=None):
+    target_chat = str(chat_id or TELEGRAM_CHAT_ID)
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
-    requests.post(url, json={"chat_id": TELEGRAM_CHAT_ID, "text": message, "parse_mode": "HTML"}, timeout=10)
+    try:
+        requests.post(url, json={"chat_id": target_chat, "text": message, "parse_mode": "HTML"}, timeout=10)
+    except Exception as e:
+        print(f"Telegram send error: {e}")
 
-def fetch_all():
-    curr_state = {}
-    successful_codes = set()
 
-    for acc in ACCOUNTS:
-        try:
-            obj = SmartConnect(api_key=acc["api_key"])
-            totp = pyotp.TOTP(acc["totp_secret"]).now()
-            session = obj.generateSession(acc["client_code"], acc["pin"], totp)
-            if not session.get("status"):
-                continue
+def fetch_single_account(acc):
+    """Fetches detailed holdings for a single account."""
+    try:
+        obj = SmartConnect(api_key=acc["api_key"], timeout=20)
+        totp = pyotp.TOTP(acc["totp_secret"]).now()
+        session = obj.generateSession(acc["client_code"], acc["pin"], totp)
+        if not session.get("status"):
+            return False, [], session.get("message", "Login failed")
 
-            resp = obj.holding()
-            if not resp.get("status"):
-                continue
+        resp = obj.holding()
+        if not resp.get("status"):
+            return False, [], resp.get("message", "Fetch failed")
 
-            successful_codes.add(acc["client_code"])
-            for item in (resp.get("data") or []):
-                settled_qty = int(item.get("quantity", 0) or 0)
-t1_qty = int(item.get("t1quantity", 0) or item.get("t1Quantity", 0) or 0)
-qty = settled_qty if (settled_qty > 0 and settled_qty == t1_qty) else (settled_qty + t1_qty)
-                symbol = str(item.get("tradingsymbol", "")).strip()
-                if qty > 0 and symbol:
-                    key = f"{acc['client_code']}|{symbol}"
-                    curr_state[key] = {"account": acc["account_name"], "stock": symbol, "qty": qty}
-        except Exception as e:
-            print(f"Error {acc['account_name']}: {e}")
+        items = []
+        for item in (resp.get("data") or []):
+            settled_qty = int(item.get("quantity", 0) or 0)
+            t1_qty = int(item.get("t1quantity", 0) or item.get("t1Quantity", 0) or 0)
+            qty = settled_qty if (settled_qty > 0 and settled_qty == t1_qty) else (settled_qty + t1_qty)
+            symbol = str(item.get("tradingsymbol", "")).strip()
+            if qty > 0 and symbol:
+                avg = float(item.get("averageprice", 0.0) or 0.0)
+                ltp = float(item.get("ltp", 0.0) or 0.0)
+                inv = qty * avg
+                cur = qty * ltp
+                items.append({
+                    "stock": symbol,
+                    "qty": qty,
+                    "avg": round(avg, 2),
+                    "ltp": round(ltp, 2),
+                    "invested": round(inv, 2),
+                    "current": round(cur, 2),
+                    "pnl": round(cur - inv, 2),
+                })
+        return True, items, "OK"
+    except Exception as e:
+        return False, [], str(e)
+
+
+def handle_client_query(query_text, chat_id):
+    """Finds matching client(s) by name or client code and sends their live holdings."""
+    q = query_text.lower().replace("/holding", "").replace("/holdings", "").strip()
+
+    if q in ("/clients", "clients", "/list", "list"):
+        lines = ["📋 <b>Available Clients List:</b>\n"]
+        for idx, acc in enumerate(ACCOUNTS, 1):
+            lines.append(f"{idx}. <b>{acc['account_name']}</b> (<code>{acc['client_code']}</code>)")
+        lines.append("\n💡 <i>Kisi bhi client ki holding dekhne ke liye uska naam ya code likh kar bhejein (e.g., Aniket)</i>")
+        send_telegram_alert("\n".join(lines), chat_id)
+        return
+
+    # Match client by name or client_code
+    matched = [
+        acc for acc in ACCOUNTS
+        if q in acc["account_name"].lower() or q == acc["client_code"].lower()
+    ]
+
+    if not matched:
+        send_telegram_alert(
+            f"❌ Koi client nahi mila: <b>{query_text}</b>\n"
+            f"Saare clients dekhne ke liye <code>/clients</code> bhejein.",
+            chat_id
+        )
+        return
+
+    for acc in matched:
+        ok, items, msg = fetch_single_account(acc)
+        if not ok:
+            send_telegram_alert(f"⚠️ <b>{acc['account_name']}</b> ({acc['client_code']}): Error — {msg}", chat_id)
+            continue
+
+        if not items:
+            send_telegram_alert(f"📭 <b>{acc['account_name']}</b> ({acc['client_code']}): Koi active holding nahi hai.", chat_id)
+            continue
+
+        tot_inv = sum(x["invested"] for x in items)
+        tot_cur = sum(x["current"] for x in items)
+        tot_pnl = tot_cur - tot_inv
+        pnl_icon = "🟢" if tot_pnl >= 0 else "🔴"
+
+        lines = [
+            f"📊 <b>{acc['account_name']}</b> (<code>{acc['client_code']}</code>)",
+            f"💰 Invested: ₹{tot_inv:,.2f} | Current: ₹{tot_cur:,.2f}",
+            f"{pnl_icon} Net P&L: <b>₹{tot_pnl:,.2f}</b>\n"
+        ]
+        for x in items:
+            s_icon = "🟢" if x["pnl"] >= 0 else "🔴"
+            lines.append(
+                f"• <b>{x['stock']}</b>: {x['qty']} qty @ ₹{x['avg']} → LTP ₹{x['ltp']} ({s_icon} ₹{x['pnl']:,.0f})"
+            )
+
+        send_telegram_alert("\n".join(lines), chat_id)
         time.sleep(0.5)
 
-    return curr_state, successful_codes
+
+def check_telegram_commands(state_data):
+    """Checks incoming Telegram messages from the authorized user and replies immediately."""
+    last_update_id = state_data.get("_last_update_id", 0)
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates"
+    params = {"offset": last_update_id + 1, "timeout": 3}
+
+    try:
+        resp = requests.get(url, params=params, timeout=10).json()
+        if not resp.get("ok"):
+            return last_update_id
+
+        for update in resp.get("result", []):
+            last_update_id = max(last_update_id, update["update_id"])
+            msg = update.get("message") or {}
+            sender_id = str(msg.get("chat", {}).get("id", ""))
+            text = str(msg.get("text", "")).strip()
+
+            # Security: Only reply to YOUR authorized Telegram Chat ID
+            if sender_id != TELEGRAM_CHAT_ID or not text:
+                continue
+
+            if text.lower() in ("/start", "/help", "help"):
+                send_telegram_alert(
+                    "👋 <b>AngelOne Portfolio Bot Ready!</b>\n\n"
+                    "• Kisi bhi client ki holding mangne ke liye uska <b>naam</b> ya <b>client code</b> likhein (e.g., <code>Aniket</code> ya <code>Rakesh</code>)\n"
+                    "• Saare clients ki list ke liye <code>/clients</code> bhejein\n"
+                    "• Overall portfolio summary ke liye <code>/summary</code> bhejein",
+                    sender_id
+                )
+            elif text.lower() in ("/summary", "summary"):
+                # Calculate summary from latest saved holdings_state.json
+                total_qty_items = [v for k, v in state_data.items() if not k.startswith("_")]
+                send_telegram_alert(
+                    f"📈 <b>Tracked Active Positions:</b> {len(total_qty_items)} across {len(ACCOUNTS)} accounts.\n"
+                    f"Kisi specific client ka full P&L dekhne ke liye uska naam likhein (e.g., <code>Aniket</code>).",
+                    sender_id
+                )
+            else:
+                handle_client_query(text, sender_id)
+
+    except Exception as e:
+        print(f"Command check error: {e}")
+
+    return last_update_id
+
 
 def main():
     prev_state = {}
@@ -278,27 +392,46 @@ def main():
         with open(STATE_FILE, "r", encoding="utf-8") as f:
             prev_state = json.load(f)
 
-    curr_state, ok_codes = fetch_all()
+    # 1. Pehle aapke bheje hue Telegram commands check karein aur turant reply bhejein
+    new_update_id = check_telegram_commands(prev_state)
+
+    # 2. Phir saare accounts ka regular quantity-change check karein
+    curr_state = {"_last_update_id": new_update_id}
+    ok_codes = set()
+
+    for acc in ACCOUNTS:
+        ok, items, _ = fetch_single_account(acc)
+        if ok:
+            ok_codes.add(acc["client_code"])
+            for x in items:
+                key = f"{acc['client_code']}|{x['stock']}"
+                curr_state[key] = {"account": acc["account_name"], "stock": x["stock"], "qty": x["qty"]}
+        time.sleep(0.5)
+
     if not ok_codes:
         return
 
-    if not prev_state:
+    # Remove metadata key before comparing stocks
+    prev_stocks = {k: v for k, v in prev_state.items() if not k.startswith("_")}
+    curr_stocks = {k: v for k, v in curr_state.items() if not k.startswith("_")}
+
+    if not prev_stocks:
         with open(STATE_FILE, "w", encoding="utf-8") as f:
             json.dump(curr_state, f, indent=2)
         return
 
     alerts = []
-    for key, info in curr_state.items():
-        if key not in prev_state:
+    for key, info in curr_stocks.items():
+        if key not in prev_stocks:
             alerts.append(f"🟢 <b>NEW BUY</b> | {info['account']} | <b>{info['stock']}</b>: 0 → <b>{info['qty']}</b>")
-        elif info["qty"] != int(prev_state[key]["qty"]):
-            diff = info["qty"] - int(prev_state[key]["qty"])
+        elif info["qty"] != int(prev_stocks[key]["qty"]):
+            diff = info["qty"] - int(prev_stocks[key]["qty"])
             sign = "+" if diff > 0 else ""
-            alerts.append(f"🔄 <b>QTY CHANGED</b> | {info['account']} | <b>{info['stock']}</b>: {prev_state[key]['qty']} → <b>{info['qty']}</b> ({sign}{diff})")
+            alerts.append(f"🔄 <b>QTY CHANGED</b> | {info['account']} | <b>{info['stock']}</b>: {prev_stocks[key]['qty']} → <b>{info['qty']}</b> ({sign}{diff})")
 
-    for key, old_info in prev_state.items():
+    for key, old_info in prev_stocks.items():
         code = key.split("|")[0]
-        if code in ok_codes and key not in curr_state:
+        if code in ok_codes and key not in curr_stocks:
             alerts.append(f"🔴 <b>SOLD OUT</b> | {old_info['account']} | <b>{old_info['stock']}</b>: {old_info['qty']} → <b>0</b>")
         elif code not in ok_codes:
             curr_state[key] = old_info
@@ -308,6 +441,7 @@ def main():
 
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(curr_state, f, indent=2)
+
 
 if __name__ == "__main__":
     main()
