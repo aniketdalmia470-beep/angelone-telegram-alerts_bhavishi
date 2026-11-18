@@ -259,7 +259,9 @@ def fetch_all():
 
             successful_codes.add(acc["client_code"])
             for item in (resp.get("data") or []):
-                qty = int(item.get("quantity", 0) or 0) + int(item.get("t1quantity", 0) or item.get("t1Quantity", 0) or 0)
+                settled_qty = int(item.get("quantity", 0) or 0)
+t1_qty = int(item.get("t1quantity", 0) or item.get("t1Quantity", 0) or 0)
+qty = settled_qty if (settled_qty > 0 and settled_qty == t1_qty) else (settled_qty + t1_qty)
                 symbol = str(item.get("tradingsymbol", "")).strip()
                 if qty > 0 and symbol:
                     key = f"{acc['client_code']}|{symbol}"
