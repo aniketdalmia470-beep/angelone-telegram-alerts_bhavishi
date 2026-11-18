@@ -1,7 +1,7 @@
 name: AngelOne Telegram Alert
 on:
   schedule:
-    - cron: '*/5 3-10 * * 1-5'
+    - cron: '*/2 3-10 * * 1-5'   # Har 2 minute mein (Mon-Fri 8:30 AM - 4:28 PM IST)
   workflow_dispatch:
 
 permissions:
