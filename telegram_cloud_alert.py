@@ -1,14 +1,29 @@
 import os
+import io
 import json
 import time
+import datetime
 import pyotp
+import openpyxl
 import requests
+from collections import defaultdict
 from SmartApi import SmartConnect
 
+# ================= CONFIGURATION =================
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "9166325450:AAH7Zh2oGZ-VBtwlkINngFaZo6PWre-doUM")
 TELEGRAM_CHAT_ID = str(os.environ.get("TELEGRAM_CHAT_ID", "1448796295"))
 STATE_FILE = "holdings_state.json"
-GAIN_STEP_PCT = 5  # Har 5% (5%, 10%, 15%...) gain par alert bhejega
+GAIN_STEP_PCT = 5  # Alerts at every +5% milestone (+5%, +10%, +15%...)
+
+# OneDrive Cloud API Credentials (GitHub Secrets se aayenge)
+ONEDRIVE_CLIENT_ID = os.environ.get("ONEDRIVE_CLIENT_ID", "")
+ONEDRIVE_CLIENT_SECRET = os.environ.get("ONEDRIVE_CLIENT_SECRET", "")
+ONEDRIVE_REFRESH_TOKEN = os.environ.get("ONEDRIVE_REFRESH_TOKEN", "")
+ONEDRIVE_FILE_PATH = "Documents/InvestMart_Master_Wealth_Tracker.xlsx"
+
+START_ROW = 7
+DASH_HEADER_ROW = 15
+DASH_START_ROW = 16
 
 ACCOUNTS = [
     {"account_name": "Roshan lal", "client_code": "AACI043934", "pin": "0135", "api_key": "j9YmE0qu", "totp_secret": "BGTJAYGATBJT2O3GFWKI7JPFD4"},
@@ -44,6 +59,11 @@ ACCOUNTS = [
     {"account_name": "Monika devi", "client_code": "AAAH788468", "pin": "0135", "api_key": "rLmVDkmm", "totp_secret": "5KAE2CYQZJQPXXZJO32EC4Z52A"},
     {"account_name": "ATMA RAM", "client_code": "AAAA932378", "pin": "0135", "api_key": "3HilUF2v", "totp_secret": "XTNPQ2BH43PZUJXL3D2OF2KERQ"},
 ]
+# =================================================
+
+
+def get_ist_now():
+    return datetime.datetime.utcnow() + datetime.timedelta(hours=5, minutes=30)
 
 
 def send_telegram_alert(message, chat_id=None):
@@ -56,7 +76,6 @@ def send_telegram_alert(message, chat_id=None):
 
 
 def fetch_single_account(acc):
-    """Fetches detailed holdings for a single account with T+1 overlap fix and gain %."""
     try:
         obj = SmartConnect(api_key=acc["api_key"], timeout=20)
         totp = pyotp.TOTP(acc["totp_secret"]).now()
@@ -99,103 +118,117 @@ def fetch_single_account(acc):
         return False, [], str(e)
 
 
-def handle_client_query(query_text, chat_id):
-    """Finds matching client(s) by name or client code and sends their live holdings."""
-    q = query_text.lower().replace("/holding", "").replace("/holdings", "").strip()
+# ================= ONEDRIVE EXCEL SYNC FUNCTIONS =================
+def get_onedrive_access_token():
+    """Refresh token se naya Microsoft Graph access token leta hai."""
+    if not (ONEDRIVE_CLIENT_ID and ONEDRIVE_CLIENT_SECRET and ONEDRIVE_REFRESH_TOKEN):
+        return None
+    url = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+    data = {
+        "client_id": ONEDRIVE_CLIENT_ID,
+        "client_secret": ONEDRIVE_CLIENT_SECRET,
+        "refresh_token": ONEDRIVE_REFRESH_TOKEN,
+        "grant_type": "refresh_token",
+        "scope": "offline_access Files.ReadWrite.All",
+    }
+    try:
+        resp = requests.post(url, data=data, timeout=15).json()
+        return resp.get("access_token")
+    except Exception as e:
+        print(f"OneDrive token error: {e}")
+        return None
 
-    if q in ("/clients", "clients", "/list", "list"):
-        lines = ["📋 <b>Available Clients List:</b>\n"]
-        for idx, acc in enumerate(ACCOUNTS, 1):
-            lines.append(f"{idx}. <b>{acc['account_name']}</b> (<code>{acc['client_code']}</code>)")
-        lines.append("\n💡 <i>Kisi bhi client ki holding dekhne ke liye uska naam ya code likh kar bhejein (e.g., Aniket)</i>")
-        send_telegram_alert("\n".join(lines), chat_id)
+
+def sync_excel_to_onedrive(all_excel_rows):
+    """OneDrive se .xlsx download karke openpyxl se update karta hai aur wapas upload karta hai."""
+    if not all_excel_rows:
         return
 
-    matched = [
-        acc for acc in ACCOUNTS
-        if q in acc["account_name"].lower() or q == acc["client_code"].lower()
+    token = get_onedrive_access_token()
+    if not token:
+        print("OneDrive secrets missing; skipping cloud Excel update.")
+        return
+
+    headers = {"Authorization": f"Bearer {token}"}
+    file_url = f"https://graph.microsoft.com/v1.0/me/drive/root:/{ONEDRIVE_FILE_PATH}:/content"
+
+    # 1. OneDrive se current Excel file download karein
+    dl_resp = requests.get(file_url, headers=headers, timeout=30)
+    if not dl_resp.ok:
+        print(f"OneDrive download failed ({dl_resp.status_code}): {dl_resp.text}")
+        return
+
+    wb = openpyxl.load_workbook(io.BytesIO(dl_resp.content))
+
+    # 2. Grand Totals aur Rows tayyar karein
+    total_invested = sum(float(r[6]) for r in all_excel_rows)
+    total_current = sum(float(r[7]) for r in all_excel_rows)
+    total_pnl = sum(float(r[8]) for r in all_excel_rows)
+    ist_time = get_ist_now().strftime("%H:%M:%S")
+
+    total_row = [
+        "TOTAL", "", "", "", "", "",
+        round(total_invested, 2), round(total_current, 2), round(total_pnl, 2), ist_time
     ]
 
-    if not matched:
-        send_telegram_alert(
-            f"❌ Koi client nahi mila: <b>{query_text}</b>\n"
-            f"Saare clients dekhne ke liye <code>/clients</code> bhejein.",
-            chat_id
-        )
-        return
+    # 3. Demat_Holdings_(Equity_ETFs) update karein (Row 7 se)
+    sheet = wb["Demat_Holdings_(Equity_ETFs)"]
+    for row in sheet[f"A{START_ROW}:J500"]:
+        for cell in row:
+            cell.value = None
 
-    for acc in matched:
-        ok, items, msg = fetch_single_account(acc)
-        if not ok:
-            send_telegram_alert(f"⚠️ <b>{acc['account_name']}</b> ({acc['client_code']}): Error — {msg}", chat_id)
-            continue
+    for r_idx, row_vals in enumerate(all_excel_rows + [total_row], start=START_ROW):
+        for c_idx, val in enumerate(row_vals, start=1):
+            sheet.cell(row=r_idx, column=c_idx, value=val)
 
-        if not items:
-            send_telegram_alert(f"📭 <b>{acc['account_name']}</b> ({acc['client_code']}): Koi active holding nahi hai.", chat_id)
-            continue
+    # 4. Dashboard_Summary update karein (C12, D12 & Row 15+ Matrix)
+    if "Dashboard_Summary" in wb.sheetnames:
+        dash = wb["Dashboard_Summary"]
+        dash["C12"].value = round(total_invested, 2)
+        dash["D12"].value = round(total_current, 2)
 
-        tot_inv = sum(x["invested"] for x in items)
-        tot_cur = sum(x["current"] for x in items)
-        tot_pnl = tot_cur - tot_inv
-        pnl_icon = "🟢" if tot_pnl >= 0 else "🔴"
+        client_names = [acc["account_name"].strip() for acc in ACCOUNTS]
+        stock_data = defaultdict(lambda: defaultdict(int))
+        stock_totals = defaultdict(int)
+        for r in all_excel_rows:
+            stock_data[r[2]][r[0]] += int(r[3])
+            stock_totals[r[2]] += int(r[3])
 
-        lines = [
-            f"📊 <b>{acc['account_name']}</b> (<code>{acc['client_code']}</code>)",
-            f"💰 Invested: ₹{tot_inv:,.2f} | Current: ₹{tot_cur:,.2f}",
-            f"{pnl_icon} Net P&L: <b>₹{tot_pnl:,.2f}</b>\n"
-        ]
-        for x in items:
-            s_icon = "🟢" if x["pnl"] >= 0 else "🔴"
-            lines.append(
-                f"• <b>{x['stock']}</b>: {x['qty']} qty @ ₹{x['avg']} → LTP ₹{x['ltp']} ({s_icon} ₹{x['pnl']:,.0f})"
-            )
+        for row in dash[f"A{DASH_HEADER_ROW}:AZ500"]:
+            for cell in row:
+                cell.value = None
 
-        send_telegram_alert("\n".join(lines), chat_id)
-        time.sleep(0.5)
+        matrix_headers = ["Stock/Name", "TOTAL QTY"] + client_names
+        for c_idx, h in enumerate(matrix_headers, start=1):
+            dash.cell(row=DASH_HEADER_ROW, column=c_idx, value=h)
 
+        for r_idx, stock in enumerate(sorted(stock_totals.keys()), start=DASH_START_ROW):
+            dash.cell(row=r_idx, column=1, value=stock)
+            dash.cell(row=r_idx, column=2, value=stock_totals[stock])
+            for c_idx, client in enumerate(client_names, start=3):
+                qty = stock_data[stock].get(client, 0)
+                dash.cell(row=r_idx, column=c_idx, value=(qty if qty > 0 else None))
 
-def check_telegram_commands(state_data):
-    """Checks incoming Telegram messages from the authorized user and replies immediately."""
-    last_update_id = state_data.get("_last_update_id", 0)
-    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates"
-    params = {"offset": last_update_id + 1, "timeout": 3}
+        dash.column_dimensions["A"].width = 24
+        dash.column_dimensions["B"].width = 16
+        dash.column_dimensions["C"].width = 22
+        dash.column_dimensions["D"].width = 22
 
-    try:
-        resp = requests.get(url, params=params, timeout=10).json()
-        if not resp.get("ok"):
-            return last_update_id
+    # 5. Updated Excel file wapas OneDrive cloud par upload karein
+    out_stream = io.BytesIO()
+    wb.save(out_stream)
+    wb.close()
 
-        for update in resp.get("result", []):
-            last_update_id = max(last_update_id, update["update_id"])
-            msg = update.get("message") or {}
-            sender_id = str(msg.get("chat", {}).get("id", ""))
-            text = str(msg.get("text", "")).strip()
-
-            if sender_id != TELEGRAM_CHAT_ID or not text:
-                continue
-
-            if text.lower() in ("/start", "/help", "help"):
-                send_telegram_alert(
-                    "👋 <b>AngelOne Portfolio Bot Ready!</b>\n\n"
-                    "• Kisi bhi client ki holding mangne ke liye uska <b>naam</b> ya <b>client code</b> likhein (e.g., <code>Aniket</code> ya <code>Rakesh</code>)\n"
-                    "• Saare clients ki list ke liye <code>/clients</code> bhejein\n"
-                    "• Overall portfolio summary ke liye <code>/summary</code> bhejein",
-                    sender_id
-                )
-            elif text.lower() in ("/summary", "summary"):
-                total_qty_items = [v for k, v in state_data.items() if not k.startswith("_")]
-                send_telegram_alert(
-                    f"📈 <b>Tracked Active Positions:</b> {len(total_qty_items)} across {len(ACCOUNTS)} accounts.\n"
-                    f"Kisi specific client ka full P&L dekhne ke liye uska naam likhein (e.g., <code>Aniket</code>).",
-                    sender_id
-                )
-            else:
-                handle_client_query(text, sender_id)
-
-    except Exception as e:
-        print(f"Command check error: {e}")
-
-    return last_update_id
+    up_headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    }
+    up_resp = requests.put(file_url, headers=up_headers, data=out_stream.getvalue(), timeout=30)
+    if up_resp.ok:
+        print(f"SUCCESS: OneDrive Excel updated at {ist_time} IST!")
+    else:
+        print(f"OneDrive upload failed ({up_resp.status_code}): {up_resp.text}")
+# =================================================================
 
 
 def main():
@@ -204,13 +237,12 @@ def main():
         with open(STATE_FILE, "r", encoding="utf-8") as f:
             prev_state = json.load(f)
 
-    # 1. Pehle aapke bheje hue Telegram commands check karein aur turant reply bhejein
-    new_update_id = check_telegram_commands(prev_state)
-
-    # 2. Phir saare accounts ka Buy/Sell + +5%/+10% Milestone check karein
-    curr_state = {"_last_update_id": new_update_id}
+    curr_state = {}
     ok_codes = set()
+    all_excel_rows = []
+    ist_time = get_ist_now().strftime("%H:%M:%S")
 
+    # 1. Saare accounts se holdings fetch karein (Alerts + Excel dono ke liye)
     for acc in ACCOUNTS:
         ok, items, _ = fetch_single_account(acc)
         if ok:
@@ -226,11 +258,30 @@ def main():
                     "gain_pct": x["gain_pct"],
                     "milestone": x["milestone"],
                 }
+                # Excel sheet ke liye 10 columns ki row tayyar karein
+                all_excel_rows.append([
+                    acc["account_name"].strip(),
+                    acc["client_code"].strip(),
+                    x["stock"],
+                    x["qty"],
+                    x["avg"],
+                    x["ltp"],
+                    x["invested"],
+                    x["current"],
+                    x["pnl"],
+                    ist_time
+                ])
         time.sleep(0.5)
 
     if not ok_codes:
         return
 
+    # 2. Har 15 minute mein OneDrive Cloud Excel file update karein (00, 15, 30, 45)
+    ist_now = get_ist_now()
+    if ist_now.minute % 15 < 2:
+        sync_excel_to_onedrive(all_excel_rows)
+
+    # 3. Buy/Sell aur +5% / +10% / +15% Gain Alerts check karein (Har 2 minute)
     prev_stocks = {k: v for k, v in prev_state.items() if not k.startswith("_")}
     curr_stocks = {k: v for k, v in curr_state.items() if not k.startswith("_")}
 
@@ -277,7 +328,7 @@ def main():
 
     all_alerts = qty_alerts + pct_alerts
     if all_alerts:
-        send_telegram_alert(f"🚨 <b>Portfolio Alert ({time.strftime('%d-%b %I:%M %p')})</b>\n\n" + "\n\n".join(all_alerts))
+        send_telegram_alert(f"🚨 <b>Portfolio Alert ({ist_now.strftime('%d-%b %I:%M %p')})</b>\n\n" + "\n\n".join(all_alerts))
 
     with open(STATE_FILE, "w", encoding="utf-8") as f:
         json.dump(curr_state, f, indent=2)
