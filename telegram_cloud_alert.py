@@ -132,7 +132,7 @@ def fetch_account_data(acc):
                 for o in ob_resp["data"]:
                     status = str(o.get("status", "") or o.get("orderstatus", "")).lower().strip()
                     prod = str(o.get("producttype", "")).upper().strip()
-                    if status == "complete" and prod == "DELIVERY":
+                   if status == "complete" and prod not in ("INTRADAY", "MIS"):
                         oid = str(o.get("orderid", "")).strip()
                         if oid:
                             delivery_orders.append({
