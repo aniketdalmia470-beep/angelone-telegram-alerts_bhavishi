@@ -10,8 +10,8 @@ from collections import defaultdict
 from SmartApi import SmartConnect
 
 # ================= CONFIGURATION =================
-TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "9166325450:AAH7Zh2oGZ-VBtwlkINngFaZo6PWre-doUM")
-TELEGRAM_CHAT_ID = str(os.environ.get("TELEGRAM_CHAT_ID", "1448796295"))
+TELEGRAM_BOT_TOKEN = "9166325450:AAH7Zh2oGZ-VBtwlkINngFaZo6PWre-doUM"
+TELEGRAM_CHAT_ID = "1448796295"
 STATE_FILE = "holdings_state.json"
 GAIN_STEP_PCT = 5  # Intraday mein har +5% (+5%, +10%, +15%...) up hone par alert bhejega
 
