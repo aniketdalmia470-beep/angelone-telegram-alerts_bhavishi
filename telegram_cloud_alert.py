@@ -61,6 +61,11 @@ ACCOUNTS = [
 # =================================================
 
 
+def norm_symbol(sym):
+    s = str(sym or "").strip().upper()
+    return s[:-3] if s.endswith("-EQ") else s
+
+
 def get_ist_now():
     return datetime.datetime.utcnow() + datetime.timedelta(hours=5, minutes=30)
 
@@ -94,7 +99,7 @@ def fetch_account_data(acc):
             settled_qty = int(item.get("quantity", 0) or 0)
             t1_qty = int(item.get("t1quantity", 0) or item.get("t1Quantity", 0) or 0)
             qty = settled_qty if (settled_qty > 0 and settled_qty == t1_qty) else (settled_qty + t1_qty)
-            symbol = str(item.get("tradingsymbol", "")).strip()
+            symbol = norm_symbol(item.get("tradingsymbol", ""))
 
             if qty > 0 and symbol:
                 avg = float(item.get("averageprice", 0.0) or 0.0)
@@ -139,7 +144,7 @@ def fetch_account_data(acc):
                                 "orderid": oid,
                                 "account": acc["account_name"],
                                 "client_code": acc["client_code"],
-                                "stock": str(o.get("tradingsymbol", "")).strip(),
+                                "stock": norm_symbol(o.get("tradingsymbol", "")),
                                 "side": str(o.get("transactiontype", "")).upper().strip(),
                                 "qty": int(float(o.get("filledshares", 0) or o.get("quantity", 0) or 0)),
                                 "price": float(o.get("averageprice", 0.0) or o.get("price", 0.0) or 0.0),
@@ -167,7 +172,7 @@ def build_portfolio_summary_msg(stocks_dict, title_label="Portfolio Summary"):
         tot_inv += inv
         tot_cur += cur
 
-        sym = info["stock"]
+        sym = norm_symbol(info["stock"])
         if sym not in stock_agg:
             stock_agg[sym] = {"qty": 0, "inv": 0.0, "cur": 0.0}
         stock_agg[sym]["qty"] += qty
@@ -197,8 +202,8 @@ def build_portfolio_summary_msg(stocks_dict, title_label="Portfolio Summary"):
 
 
 def handle_stock_query(symbol_query, stocks_dict, chat_id):
-    q = symbol_query.upper().replace("/STOCK", "").strip()
-    matches = [v for v in stocks_dict.values() if q in v["stock"].upper()]
+    q = norm_symbol(symbol_query.upper().replace("/STOCK", ""))
+    matches = [v for v in stocks_dict.values() if q in norm_symbol(v["stock"])]
     if not matches:
         send_telegram_alert(f"❌ No active holdings found matching <b>{q}</b>.", chat_id)
         return
@@ -333,7 +338,6 @@ def sync_excel_to_onedrive(all_excel_rows):
     file_url = f"https://graph.microsoft.com/v1.0/me/drive/root:/{target_path}:/content"
     dl_resp = requests.get(file_url, headers=headers, timeout=30)
 
-    # Auto-fallback to .xlsm if .xlsx is not found in OneDrive
     if dl_resp.status_code == 404 and target_path.endswith(".xlsx"):
         alt_path = target_path[:-5] + ".xlsm"
         alt_url = f"https://graph.microsoft.com/v1.0/me/drive/root:/{alt_path}:/content"
@@ -453,7 +457,7 @@ def main():
 
     new_update_id = check_telegram_commands(prev_state, curr_stocks)
 
-    if ist_now.minute % 5 < 2:
+    if ist_now.minute % 15 < 2:
         sync_excel_to_onedrive(all_excel_rows)
 
     seen_orders = {oid for oid in prev_state.get("_seen_delivery_orders", []) if oid.startswith(today_str)}
