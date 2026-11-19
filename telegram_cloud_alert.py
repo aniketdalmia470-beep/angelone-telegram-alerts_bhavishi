@@ -69,7 +69,8 @@ def send_telegram_alert(message, chat_id=None):
     target_chat = str(chat_id or TELEGRAM_CHAT_ID)
     url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/sendMessage"
     try:
-        requests.post(url, json={"chat_id": target_chat, "text": message, "parse_mode": "HTML"}, timeout=10)
+        r = requests.post(url, json={"chat_id": target_chat, "text": message, "parse_mode": "HTML"}, timeout=10)
+        print("Telegram API Response:", r.status_code, r.text)
     except Exception as e:
         print(f"Telegram send error: {e}")
 
