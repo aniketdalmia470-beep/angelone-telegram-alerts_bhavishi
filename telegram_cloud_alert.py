@@ -13,9 +13,8 @@ from SmartApi import SmartConnect
 TELEGRAM_BOT_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN", "9166325450:AAH7Zh2oGZ-VBtwlkINngFaZo6PWre-doUM")
 TELEGRAM_CHAT_ID = str(os.environ.get("TELEGRAM_CHAT_ID", "1448796295"))
 STATE_FILE = "holdings_state.json"
-GAIN_STEP_PCT = 5  # Alerts at every +5% milestone (+5%, +10%, +15%...)
+GAIN_STEP_PCT = 5  # Intraday mein har +5% (+5%, +10%, +15%...) up hone par alert bhejega
 
-# OneDrive Cloud API Credentials (GitHub Secrets se aayenge)
 ONEDRIVE_CLIENT_ID = os.environ.get("ONEDRIVE_CLIENT_ID", "")
 ONEDRIVE_CLIENT_SECRET = os.environ.get("ONEDRIVE_CLIENT_SECRET", "")
 ONEDRIVE_REFRESH_TOKEN = os.environ.get("ONEDRIVE_REFRESH_TOKEN", "")
@@ -75,17 +74,19 @@ def send_telegram_alert(message, chat_id=None):
         print(f"Telegram send error: {e}")
 
 
-def fetch_single_account(acc):
+def fetch_account_data(acc):
+    """Fetches Holdings (with Intraday % change from Prev Close) AND completed DELIVERY orders."""
     try:
         obj = SmartConnect(api_key=acc["api_key"], timeout=20)
         totp = pyotp.TOTP(acc["totp_secret"]).now()
         session = obj.generateSession(acc["client_code"], acc["pin"], totp)
         if not session.get("status"):
-            return False, [], session.get("message", "Login failed")
+            return False, [], [], session.get("message", "Login failed")
 
+        # 1. Fetch Holdings
         resp = obj.holding()
         if not resp.get("status"):
-            return False, [], resp.get("message", "Fetch failed")
+            return False, [], [], resp.get("message", "Fetch failed")
 
         items = []
         for item in (resp.get("data") or []):
@@ -97,30 +98,205 @@ def fetch_single_account(acc):
             if qty > 0 and symbol:
                 avg = float(item.get("averageprice", 0.0) or 0.0)
                 ltp = float(item.get("ltp", 0.0) or 0.0)
+                prev_close = float(item.get("close", 0.0) or item.get("prevclose", 0.0) or 0.0)
+
                 inv = qty * avg
                 cur = qty * ltp
-                gain_pct = round(((ltp - avg) / avg) * 100, 2) if avg > 0 else 0.0
-                curr_milestone = int(gain_pct // GAIN_STEP_PCT) * GAIN_STEP_PCT if gain_pct >= GAIN_STEP_PCT else 0
+
+                # Intraday % gain calculated against Previous Day Close
+                if prev_close > 0:
+                    intraday_pct = round(((ltp - prev_close) / prev_close) * 100, 2)
+                else:
+                    intraday_pct = 0.0
+
+                curr_milestone = int(intraday_pct // GAIN_STEP_PCT) * GAIN_STEP_PCT if intraday_pct >= GAIN_STEP_PCT else 0
 
                 items.append({
                     "stock": symbol,
                     "qty": qty,
                     "avg": round(avg, 2),
                     "ltp": round(ltp, 2),
+                    "prev_close": round(prev_close, 2),
                     "invested": round(inv, 2),
                     "current": round(cur, 2),
                     "pnl": round(cur - inv, 2),
-                    "gain_pct": gain_pct,
+                    "intraday_pct": intraday_pct,
                     "milestone": curr_milestone,
                 })
-        return True, items, "OK"
+
+        # 2. Fetch Today's OrderBook — ONLY completed DELIVERY orders (Intraday ignored)
+        delivery_orders = []
+        try:
+            ob_resp = obj.orderBook()
+            if ob_resp and ob_resp.get("status") and ob_resp.get("data"):
+                for o in ob_resp["data"]:
+                    status = str(o.get("status", "") or o.get("orderstatus", "")).lower().strip()
+                    prod = str(o.get("producttype", "")).upper().strip()
+                    if status == "complete" and prod == "DELIVERY":
+                        oid = str(o.get("orderid", "")).strip()
+                        if oid:
+                            delivery_orders.append({
+                                "orderid": oid,
+                                "account": acc["account_name"],
+                                "client_code": acc["client_code"],
+                                "stock": str(o.get("tradingsymbol", "")).strip(),
+                                "side": str(o.get("transactiontype", "")).upper().strip(),
+                                "qty": int(float(o.get("filledshares", 0) or o.get("quantity", 0) or 0)),
+                                "price": float(o.get("averageprice", 0.0) or o.get("price", 0.0) or 0.0),
+                            })
+        except Exception:
+            pass
+
+        return True, items, delivery_orders, "OK"
     except Exception as e:
-        return False, [], str(e)
+        return False, [], [], str(e)
 
 
-# ================= ONEDRIVE EXCEL SYNC FUNCTIONS =================
+# ================= TELEGRAM COMMAND HANDLERS =================
+def build_portfolio_summary_msg(stocks_dict, title_label="Portfolio Summary"):
+    tot_inv = 0.0
+    tot_cur = 0.0
+    stock_agg = {}
+
+    for info in stocks_dict.values():
+        qty = int(info.get("qty", 0))
+        avg = float(info.get("avg", 0.0))
+        ltp = float(info.get("ltp", 0.0))
+        inv = qty * avg
+        cur = qty * ltp
+        tot_inv += inv
+        tot_cur += cur
+
+        sym = info["stock"]
+        if sym not in stock_agg:
+            stock_agg[sym] = {"qty": 0, "inv": 0.0, "cur": 0.0}
+        stock_agg[sym]["qty"] += qty
+        stock_agg[sym]["inv"] += inv
+        stock_agg[sym]["cur"] += cur
+
+    net_pnl = tot_cur - tot_inv
+    net_pct = (net_pnl / tot_inv * 100) if tot_inv > 0 else 0.0
+    icon = "🟢" if net_pnl >= 0 else "🔴"
+
+    ranked = sorted(stock_agg.items(), key=lambda x: x[1]["cur"] - x[1]["inv"], reverse=True)
+    lines = [
+        f"📊 <b>{title_label}</b> ({get_ist_now().strftime('%d-%b %I:%M %p IST')})",
+        f"💰 <b>Total Invested:</b> ₹{tot_inv:,.2f}",
+        f"💼 <b>Current Value:</b> ₹{tot_cur:,.2f}",
+        f"{icon} <b>Net P&L:</b> ₹{net_pnl:,.2f} ({net_pct:+.2f}%)\n",
+        "🚀 <b>Top Gainers:</b>"
+    ]
+    for sym, d in ranked[:3]:
+        lines.append(f"  • {sym}: ₹{d['cur'] - d['inv']:+,.0f} ({d['qty']} qty)")
+
+    lines.append("\n🔻 <b>Bottom Movers:</b>")
+    for sym, d in ranked[-3:]:
+        lines.append(f"  • {sym}: ₹{d['cur'] - d['inv']:+,.0f} ({d['qty']} qty)")
+
+    return "\n".join(lines)
+
+
+def handle_stock_query(symbol_query, stocks_dict, chat_id):
+    q = symbol_query.upper().replace("/STOCK", "").strip()
+    matches = [v for v in stocks_dict.values() if q in v["stock"].upper()]
+    if not matches:
+        send_telegram_alert(f"❌ No active holdings found matching <b>{q}</b>.", chat_id)
+        return
+
+    total_qty = sum(int(m["qty"]) for m in matches)
+    total_cur = sum(int(m["qty"]) * float(m["ltp"]) for m in matches)
+    total_pnl = sum(int(m["qty"]) * (float(m["ltp"]) - float(m["avg"])) for m in matches)
+    icon = "🟢" if total_pnl >= 0 else "🔴"
+
+    lines = [
+        f"🔎 <b>Stock Lookup: {q}</b>",
+        f"📦 <b>Total Qty:</b> {total_qty} | <b>Current:</b> ₹{total_cur:,.0f} ({icon} ₹{total_pnl:+,.0f})\n"
+    ]
+    for m in sorted(matches, key=lambda x: int(x["qty"]), reverse=True):
+        pnl = int(m["qty"]) * (float(m["ltp"]) - float(m["avg"]))
+        lines.append(f"• <b>{m['account']}</b>: {m['qty']} qty @ ₹{m['avg']} (₹{pnl:+,.0f})")
+    send_telegram_alert("\n".join(lines), chat_id)
+
+
+def handle_client_query(query_text, chat_id):
+    q = query_text.lower().replace("/holding", "").replace("/holdings", "").strip()
+    if q in ("/clients", "clients", "/list", "list"):
+        lines = ["📋 <b>Available Clients List:</b>\n"]
+        for idx, acc in enumerate(ACCOUNTS, 1):
+            lines.append(f"{idx}. <b>{acc['account_name']}</b> (<code>{acc['client_code']}</code>)")
+        send_telegram_alert("\n".join(lines), chat_id)
+        return
+
+    matched = [acc for acc in ACCOUNTS if q in acc["account_name"].lower() or q == acc["client_code"].lower()]
+    if not matched:
+        send_telegram_alert(f"❌ Koi client nahi mila: <b>{query_text}</b>", chat_id)
+        return
+
+    for acc in matched:
+        ok, items, _, msg = fetch_account_data(acc)
+        if not ok:
+            send_telegram_alert(f"⚠️ <b>{acc['account_name']}</b>: {msg}", chat_id)
+            continue
+        if not items:
+            send_telegram_alert(f"📭 <b>{acc['account_name']}</b>: Koi active holding nahi hai.", chat_id)
+            continue
+
+        tot_inv = sum(x["invested"] for x in items)
+        tot_cur = sum(x["current"] for x in items)
+        tot_pnl = tot_cur - tot_inv
+        pnl_icon = "🟢" if tot_pnl >= 0 else "🔴"
+
+        lines = [
+            f"📊 <b>{acc['account_name']}</b> (<code>{acc['client_code']}</code>)",
+            f"💰 Invested: ₹{tot_inv:,.2f} | Current: ₹{tot_cur:,.2f}",
+            f"{pnl_icon} Net P&L: <b>₹{tot_pnl:,.2f}</b>\n"
+        ]
+        for x in items:
+            s_icon = "🟢" if x["pnl"] >= 0 else "🔴"
+            lines.append(f"• <b>{x['stock']}</b>: {x['qty']} qty @ ₹{x['avg']} → LTP ₹{x['ltp']} ({s_icon} ₹{x['pnl']:,.0f} | Today: {x['intraday_pct']:+.2f}%)")
+        send_telegram_alert("\n".join(lines), chat_id)
+        time.sleep(0.5)
+
+
+def check_telegram_commands(state_data, stocks_dict):
+    last_update_id = state_data.get("_last_update_id", 0)
+    url = f"https://api.telegram.org/bot{TELEGRAM_BOT_TOKEN}/getUpdates"
+    try:
+        resp = requests.get(url, params={"offset": last_update_id + 1, "timeout": 3}, timeout=10).json()
+        if not resp.get("ok"):
+            return last_update_id
+
+        for upd in resp.get("result", []):
+            last_update_id = max(last_update_id, upd["update_id"])
+            msg = upd.get("message") or {}
+            sender_id = str(msg.get("chat", {}).get("id", ""))
+            text = str(msg.get("text", "")).strip()
+            if sender_id != TELEGRAM_CHAT_ID or not text:
+                continue
+
+            low = text.lower()
+            if low in ("/start", "/help", "help"):
+                send_telegram_alert(
+                    "👋 <b>Commands Available:</b>\n"
+                    "• <code>/summary</code> — Total Invested, Current Value & Net P&L\n"
+                    "• <code>/stock SYMBOL</code> — Check who holds a stock\n"
+                    "• <code>/clients</code> — List all 32 accounts\n"
+                    "• Type any <b>Client Name</b> (e.g., <code>Aniket</code>) for live holdings",
+                    sender_id
+                )
+            elif low in ("/summary", "summary"):
+                send_telegram_alert(build_portfolio_summary_msg(stocks_dict, "Live Portfolio Summary"), sender_id)
+            elif low.startswith("/stock"):
+                handle_stock_query(text, stocks_dict, sender_id)
+            else:
+                handle_client_query(text, sender_id)
+    except Exception as e:
+        print(f"Command check error: {e}")
+    return last_update_id
+
+
+# ================= ONEDRIVE EXCEL SYNC =================
 def get_onedrive_access_token():
-    """Refresh token se naya Microsoft Graph access token leta hai."""
     if not (ONEDRIVE_CLIENT_ID and ONEDRIVE_CLIENT_SECRET and ONEDRIVE_REFRESH_TOKEN):
         return None
     url = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
@@ -132,61 +308,43 @@ def get_onedrive_access_token():
         "scope": "offline_access Files.ReadWrite.All",
     }
     try:
-        resp = requests.post(url, data=data, timeout=15).json()
-        return resp.get("access_token")
-    except Exception as e:
-        print(f"OneDrive token error: {e}")
+        return requests.post(url, data=data, timeout=15).json().get("access_token")
+    except Exception:
         return None
 
 
 def sync_excel_to_onedrive(all_excel_rows):
-    """OneDrive se .xlsx download karke openpyxl se update karta hai aur wapas upload karta hai."""
     if not all_excel_rows:
         return
-
     token = get_onedrive_access_token()
     if not token:
-        print("OneDrive secrets missing; skipping cloud Excel update.")
         return
 
     headers = {"Authorization": f"Bearer {token}"}
     file_url = f"https://graph.microsoft.com/v1.0/me/drive/root:/{ONEDRIVE_FILE_PATH}:/content"
-
-    # 1. OneDrive se current Excel file download karein
     dl_resp = requests.get(file_url, headers=headers, timeout=30)
     if not dl_resp.ok:
-        print(f"OneDrive download failed ({dl_resp.status_code}): {dl_resp.text}")
         return
 
     wb = openpyxl.load_workbook(io.BytesIO(dl_resp.content))
-
-    # 2. Grand Totals aur Rows tayyar karein
     total_invested = sum(float(r[6]) for r in all_excel_rows)
     total_current = sum(float(r[7]) for r in all_excel_rows)
     total_pnl = sum(float(r[8]) for r in all_excel_rows)
     ist_time = get_ist_now().strftime("%H:%M:%S")
 
-    total_row = [
-        "TOTAL", "", "", "", "", "",
-        round(total_invested, 2), round(total_current, 2), round(total_pnl, 2), ist_time
-    ]
-
-    # 3. Demat_Holdings_(Equity_ETFs) update karein (Row 7 se)
+    total_row = ["TOTAL", "", "", "", "", "", round(total_invested, 2), round(total_current, 2), round(total_pnl, 2), ist_time]
     sheet = wb["Demat_Holdings_(Equity_ETFs)"]
     for row in sheet[f"A{START_ROW}:J500"]:
         for cell in row:
             cell.value = None
-
     for r_idx, row_vals in enumerate(all_excel_rows + [total_row], start=START_ROW):
         for c_idx, val in enumerate(row_vals, start=1):
             sheet.cell(row=r_idx, column=c_idx, value=val)
 
-    # 4. Dashboard_Summary update karein (C12, D12 & Row 15+ Matrix)
     if "Dashboard_Summary" in wb.sheetnames:
         dash = wb["Dashboard_Summary"]
         dash["C12"].value = round(total_invested, 2)
         dash["D12"].value = round(total_current, 2)
-
         client_names = [acc["account_name"].strip() for acc in ACCOUNTS]
         stock_data = defaultdict(lambda: defaultdict(int))
         stock_totals = defaultdict(int)
@@ -197,11 +355,8 @@ def sync_excel_to_onedrive(all_excel_rows):
         for row in dash[f"A{DASH_HEADER_ROW}:AZ500"]:
             for cell in row:
                 cell.value = None
-
-        matrix_headers = ["Stock/Name", "TOTAL QTY"] + client_names
-        for c_idx, h in enumerate(matrix_headers, start=1):
+        for c_idx, h in enumerate(["Stock/Name", "TOTAL QTY"] + client_names, start=1):
             dash.cell(row=DASH_HEADER_ROW, column=c_idx, value=h)
-
         for r_idx, stock in enumerate(sorted(stock_totals.keys()), start=DASH_START_ROW):
             dash.cell(row=r_idx, column=1, value=stock)
             dash.cell(row=r_idx, column=2, value=stock_totals[stock])
@@ -209,129 +364,146 @@ def sync_excel_to_onedrive(all_excel_rows):
                 qty = stock_data[stock].get(client, 0)
                 dash.cell(row=r_idx, column=c_idx, value=(qty if qty > 0 else None))
 
-        dash.column_dimensions["A"].width = 24
-        dash.column_dimensions["B"].width = 16
-        dash.column_dimensions["C"].width = 22
-        dash.column_dimensions["D"].width = 22
-
-    # 5. Updated Excel file wapas OneDrive cloud par upload karein
     out_stream = io.BytesIO()
     wb.save(out_stream)
     wb.close()
-
-    up_headers = {
-        "Authorization": f"Bearer {token}",
-        "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-    }
-    up_resp = requests.put(file_url, headers=up_headers, data=out_stream.getvalue(), timeout=30)
-    if up_resp.ok:
-        print(f"SUCCESS: OneDrive Excel updated at {ist_time} IST!")
-    else:
-        print(f"OneDrive upload failed ({up_resp.status_code}): {up_resp.text}")
-# =================================================================
+    requests.put(file_url, headers={"Authorization": f"Bearer {token}", "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}, data=out_stream.getvalue(), timeout=30)
 
 
+# ================= MAIN EXECUTION =================
 def main():
     prev_state = {}
     if os.path.exists(STATE_FILE):
         with open(STATE_FILE, "r", encoding="utf-8") as f:
             prev_state = json.load(f)
 
-    curr_state = {}
+    curr_stocks = {}
     ok_codes = set()
     all_excel_rows = []
-    ist_time = get_ist_now().strftime("%H:%M:%S")
+    all_delivery_orders = []
+    ist_now = get_ist_now()
+    ist_time = ist_now.strftime("%H:%M:%S")
+    today_str = ist_now.strftime("%Y-%m-%d")
 
-    # 1. Saare accounts se holdings fetch karein (Alerts + Excel dono ke liye)
+    # Reset intraday milestones automatically at the start of each new trading day
+    prev_date = prev_state.get("_intraday_date", "")
+    is_new_day = (prev_date != today_str)
+
     for acc in ACCOUNTS:
-        ok, items, _ = fetch_single_account(acc)
+        ok, items, del_orders, _ = fetch_account_data(acc)
         if ok:
             ok_codes.add(acc["client_code"])
+            all_delivery_orders.extend(del_orders)
             for x in items:
                 key = f"{acc['client_code']}|{x['stock']}"
-                curr_state[key] = {
+                curr_stocks[key] = {
                     "account": acc["account_name"],
                     "stock": x["stock"],
                     "qty": x["qty"],
                     "avg": x["avg"],
                     "ltp": x["ltp"],
-                    "gain_pct": x["gain_pct"],
+                    "prev_close": x["prev_close"],
+                    "intraday_pct": x["intraday_pct"],
                     "milestone": x["milestone"],
                 }
-                # Excel sheet ke liye 10 columns ki row tayyar karein
                 all_excel_rows.append([
-                    acc["account_name"].strip(),
-                    acc["client_code"].strip(),
-                    x["stock"],
-                    x["qty"],
-                    x["avg"],
-                    x["ltp"],
-                    x["invested"],
-                    x["current"],
-                    x["pnl"],
-                    ist_time
+                    acc["account_name"].strip(), acc["client_code"].strip(),
+                    x["stock"], x["qty"], x["avg"], x["ltp"],
+                    x["invested"], x["current"], x["pnl"], ist_time
                 ])
         time.sleep(0.5)
 
     if not ok_codes:
         return
 
-    # 2. Har 15 minute mein OneDrive Cloud Excel file update karein (00, 15, 30, 45)
-    ist_now = get_ist_now()
+    new_update_id = check_telegram_commands(prev_state, curr_stocks)
+
     if ist_now.minute % 15 < 2:
         sync_excel_to_onedrive(all_excel_rows)
 
-    # 3. Buy/Sell aur +5% / +10% / +15% Gain Alerts check karein (Har 2 minute)
+    # 1. SAME-MINUTE DELIVERY ORDER ALERTS (Only DELIVERY, Intraday completely ignored)
+    seen_orders = {oid for oid in prev_state.get("_seen_delivery_orders", []) if oid.startswith(today_str)}
+    order_alerts = []
+    for o in all_delivery_orders:
+        unique_oid = f"{today_str}_{o['client_code']}_{o['orderid']}"
+        if unique_oid not in seen_orders:
+            seen_orders.add(unique_oid)
+            if prev_state:
+                badge = "🟢 <b>DELIVERY BUY EXECUTED</b>" if o["side"] == "BUY" else "🔴 <b>DELIVERY SELL EXECUTED</b>"
+                order_alerts.append(
+                    f"{badge} | {o['account']} | <b>{o['stock']}</b>\n"
+                    f"   Qty: <b>{o['qty']}</b> @ ₹{o['price']}"
+                )
+
+    # 2. HOLDINGS QTY & INTRADAY +5% / +10% GAIN ALERTS
     prev_stocks = {k: v for k, v in prev_state.items() if not k.startswith("_")}
-    curr_stocks = {k: v for k, v in curr_state.items() if not k.startswith("_")}
-
-    if not prev_stocks:
-        with open(STATE_FILE, "w", encoding="utf-8") as f:
-            json.dump(curr_state, f, indent=2)
-        return
-
     qty_alerts = []
     pct_alerts = []
+    alerted_intraday_symbols = set()  # Avoid duplicate +5% spam if 15 accounts hold the same stock
 
-    for key, info in curr_stocks.items():
-        if key not in prev_stocks:
-            qty_alerts.append(f"🟢 <b>NEW BUY</b> | {info['account']} | <b>{info['stock']}</b>: 0 → <b>{info['qty']}</b>")
-        else:
-            old_info = prev_stocks[key]
-            old_qty = int(old_info["qty"])
-
-            # Quantity Change Check
-            if info["qty"] != old_qty:
-                diff = info["qty"] - old_qty
-                sign = "+" if diff > 0 else ""
-                qty_alerts.append(f"🔄 <b>QTY CHANGED</b> | {info['account']} | <b>{info['stock']}</b>: {old_qty} → <b>{info['qty']}</b> ({sign}{diff})")
-
-            # +5% / +10% / +15% Gain Milestone Check
-            prev_milestone = int(old_info.get("milestone", info["milestone"]))
-            curr_milestone = int(info["milestone"])
-
-            if curr_milestone > prev_milestone and curr_milestone >= GAIN_STEP_PCT:
-                pct_alerts.append(
-                    f"🚀 <b>+{curr_milestone}% GAIN HIT</b> | {info['account']} | <b>{info['stock']}</b>\n"
-                    f"   Avg: ₹{info['avg']} → LTP: <b>₹{info['ltp']}</b> (<b>+{info['gain_pct']}%</b>)"
-                )
+    if prev_stocks:
+        for key, info in curr_stocks.items():
+            if key not in prev_stocks:
+                qty_alerts.append(f"🟢 <b>HOLDING ADDED</b> | {info['account']} | <b>{info['stock']}</b>: 0 → <b>{info['qty']}</b>")
             else:
-                info["milestone"] = max(prev_milestone, curr_milestone)
+                old_info = prev_stocks[key]
+                old_qty = int(old_info["qty"])
 
-    # Sold Out Check
-    for key, old_info in prev_stocks.items():
-        code = key.split("|")[0]
-        if code in ok_codes and key not in curr_state:
-            qty_alerts.append(f"🔴 <b>SOLD OUT</b> | {old_info['account']} | <b>{old_info['stock']}</b>: {old_info['qty']} → <b>0</b>")
-        elif code not in ok_codes:
-            curr_state[key] = old_info
+                if info["qty"] != old_qty:
+                    diff = info["qty"] - old_qty
+                    sign = "+" if diff > 0 else ""
+                    qty_alerts.append(f"🔄 <b>QTY CHANGED</b> | {info['account']} | <b>{info['stock']}</b>: {old_qty} → <b>{info['qty']}</b> ({sign}{diff})")
 
-    all_alerts = qty_alerts + pct_alerts
+                # Intraday +5% / +10% Milestone Check (resets to 0 on a new trading day)
+                prev_milestone = 0 if is_new_day else int(old_info.get("milestone", 0))
+                curr_milestone = int(info["milestone"])
+
+                if curr_milestone > prev_milestone and curr_milestone >= GAIN_STEP_PCT:
+                    sym_ms_key = f"{info['stock']}_{curr_milestone}"
+                    if sym_ms_key not in alerted_intraday_symbols:
+                        alerted_intraday_symbols.add(sym_ms_key)
+                        pct_alerts.append(
+                            f"🚀 <b>INTRADAY +{curr_milestone}% UP</b> | <b>{info['stock']}</b>\n"
+                            f"   Prev Close: ₹{info['prev_close']} → LTP: <b>₹{info['ltp']}</b> (<b>+{info['intraday_pct']}% Today</b>)"
+                        )
+                else:
+                    info["milestone"] = max(prev_milestone, curr_milestone)
+
+        for key, old_info in prev_stocks.items():
+            code = key.split("|")[0]
+            if code in ok_codes and key not in curr_stocks:
+                qty_alerts.append(f"🔴 <b>SOLD OUT</b> | {old_info['account']} | <b>{old_info['stock']}</b>: {old_info['qty']} → <b>0</b>")
+            elif code not in ok_codes:
+                curr_stocks[key] = old_info
+
+    all_alerts = order_alerts + qty_alerts + pct_alerts
     if all_alerts:
         send_telegram_alert(f"🚨 <b>Portfolio Alert ({ist_now.strftime('%d-%b %I:%M %p')})</b>\n\n" + "\n\n".join(all_alerts))
 
+    # 3. Scheduled Market Snapshots (9:30 AM, 1:00 PM, 3:35 PM IST)
+    sent_slots = {s for s in prev_state.get("_sent_summary_slots", []) if s.startswith(today_str)}
+    if ist_now.weekday() < 5:
+        hhmm = ist_now.hour * 60 + ist_now.minute
+        for slot_key, start_m, end_m, label in [
+            ("09:30_OPEN", 9 * 60 + 30, 9 * 60 + 45, "Market Open Portfolio Snapshot (9:30 AM)"),
+            ("13:00_MID", 13 * 60, 13 * 60 + 15, "Mid-Day Portfolio Snapshot (1:00 PM)"),
+            ("15:35_CLOSE", 15 * 60 + 35, 15 * 60 + 50, "Market Close Portfolio Snapshot (3:35 PM)"),
+        ]:
+            full_slot = f"{today_str}_{slot_key}"
+            if start_m <= hhmm <= end_m and full_slot not in sent_slots:
+                send_telegram_alert(build_portfolio_summary_msg(curr_stocks, label))
+                sent_slots.add(full_slot)
+
+    final_state = {
+        "_last_update_id": new_update_id,
+        "_intraday_date": today_str,
+        "_sent_summary_slots": sorted(list(sent_slots)),
+        "_seen_delivery_orders": sorted(list(seen_orders)),
+    }
+    final_state.update(curr_stocks)
+
     with open(STATE_FILE, "w", encoding="utf-8") as f:
-        json.dump(curr_state, f, indent=2)
+        json.dump(final_state, f, indent=2)
 
 
 if __name__ == "__main__":
