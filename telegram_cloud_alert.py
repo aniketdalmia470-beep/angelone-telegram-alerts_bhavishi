@@ -453,7 +453,7 @@ def main():
 
     new_update_id = check_telegram_commands(prev_state, curr_stocks)
 
-    if ist_now.minute % 15 < 2:
+    if ist_now.minute % 5 < 2:
         sync_excel_to_onedrive(all_excel_rows)
 
     seen_orders = {oid for oid in prev_state.get("_seen_delivery_orders", []) if oid.startswith(today_str)}
