@@ -305,7 +305,7 @@ def get_onedrive_access_token():
     if not (ONEDRIVE_CLIENT_ID and ONEDRIVE_CLIENT_SECRET and ONEDRIVE_REFRESH_TOKEN):
         print("OneDrive skip: One or more ONEDRIVE secrets are empty in GitHub!")
         return None
-    url = "https://login.microsoftonline.com/common/oauth2/v2.0/token"
+    url = "https://login.microsoftonline.com/consumers/oauth2/v2.0/token"
     data = {
         "client_id": ONEDRIVE_CLIENT_ID,
         "client_secret": ONEDRIVE_CLIENT_SECRET,
