@@ -2,6 +2,10 @@ name: AngelOne Telegram Alert
 on:
   workflow_dispatch:
 
+concurrency:
+  group: angelone-alert-lock
+  cancel-in-progress: false
+
 permissions:
   contents: write
 
@@ -18,12 +22,15 @@ jobs:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install smartapi-python pyotp requests logzero websocket-client openpyxl
 
       - name: Run AngelOne Telegram Alert script
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          ONEDRIVE_CLIENT_ID: ${{ secrets.ONEDRIVE_CLIENT_ID }}
+          ONEDRIVE_CLIENT_SECRET: ${{ secrets.ONEDRIVE_CLIENT_SECRET }}
+          ONEDRIVE_REFRESH_TOKEN: ${{ secrets.ONEDRIVE_REFRESH_TOKEN }}
         run: python telegram_cloud_alert.py
 
       - name: Auto-save updated holdings_state.json
@@ -31,5 +38,4 @@ jobs:
           git config user.name "Alert Bot"
           git config user.email "bot@users.noreply.github.com"
           git add holdings_state.json
-          git commit -m "Auto-update holdings state" || exit 0
-          git push
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Auto-update holdings state" && git pull --rebase origin main && git push)
