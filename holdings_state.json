@@ -16,59 +16,19 @@
     "stock": "ROUTE",
     "qty": 195,
     "avg": 530.1,
-    "ltp": 435.8,
+    "ltp": 436.0,
     "prev_close": 413.1,
-    "intraday_pct": 5.5,
+    "intraday_pct": 5.54,
     "milestone": 5
   },
-  "AACI043934|IFCI": {
+  "AACI043934|RBA": {
     "account": "Roshan lal",
-    "stock": "IFCI",
-    "qty": 600,
-    "avg": 75.7,
-    "ltp": 58.18,
-    "prev_close": 57.35,
-    "intraday_pct": 1.45,
-    "milestone": 0
-  },
-  "AACI043934|NTPC": {
-    "account": "Roshan lal",
-    "stock": "NTPC",
-    "qty": 1,
-    "avg": 338.45,
-    "ltp": 320.85,
-    "prev_close": 320.25,
-    "intraday_pct": 0.19,
-    "milestone": 0
-  },
-  "AACI043934|JPPOWER": {
-    "account": "Roshan lal",
-    "stock": "JPPOWER",
-    "qty": 100,
-    "avg": 17.75,
-    "ltp": 13.16,
-    "prev_close": 13.06,
-    "intraday_pct": 0.77,
-    "milestone": 0
-  },
-  "AACI043934|GKENERGY": {
-    "account": "Roshan lal",
-    "stock": "GKENERGY",
-    "qty": 98,
-    "avg": 142.82,
-    "ltp": 95.62,
-    "prev_close": 94.67,
-    "intraday_pct": 1.0,
-    "milestone": 0
-  },
-  "AACI043934|VIKRAMSOLR": {
-    "account": "Roshan lal",
-    "stock": "VIKRAMSOLR",
-    "qty": 245,
-    "avg": 165.51,
-    "ltp": 142.3,
-    "prev_close": 141.04,
-    "intraday_pct": 0.89,
+    "stock": "RBA",
+    "qty": 501,
+    "avg": 97.46,
+    "ltp": 88.27,
+    "prev_close": 87.82,
+    "intraday_pct": 0.51,
     "milestone": 0
   },
   "AACI043934|CLEAN": {
@@ -76,39 +36,39 @@
     "stock": "CLEAN",
     "qty": 16,
     "avg": 756.55,
-    "ltp": 685.05,
+    "ltp": 685.4,
     "prev_close": 682.9,
-    "intraday_pct": 0.31,
+    "intraday_pct": 0.37,
     "milestone": 0
   },
-  "AACI043934|CEIGALL": {
+  "AACI043934|HDIL-BZ": {
     "account": "Roshan lal",
-    "stock": "CEIGALL",
-    "qty": 974,
-    "avg": 392.36,
-    "ltp": 376.8,
-    "prev_close": 381.5,
-    "intraday_pct": -1.23,
+    "stock": "HDIL-BZ",
+    "qty": 150,
+    "avg": 1.56,
+    "ltp": 1.46,
+    "prev_close": 1.47,
+    "intraday_pct": -0.68,
     "milestone": 0
   },
-  "AACI043934|JARO": {
+  "AACI043934|IFCI": {
     "account": "Roshan lal",
-    "stock": "JARO",
-    "qty": 16,
-    "avg": 483.35,
-    "ltp": 391.45,
-    "prev_close": 389.1,
-    "intraday_pct": 0.6,
+    "stock": "IFCI",
+    "qty": 600,
+    "avg": 75.7,
+    "ltp": 58.17,
+    "prev_close": 57.35,
+    "intraday_pct": 1.43,
     "milestone": 0
   },
-  "AACI043934|HDFCLIFE": {
+  "AACI043934|HDBFS": {
     "account": "Roshan lal",
-    "stock": "HDFCLIFE",
-    "qty": 50,
-    "avg": 536.0,
-    "ltp": 586.65,
-    "prev_close": 594.4,
-    "intraday_pct": -1.3,
+    "stock": "HDBFS",
+    "qty": 524,
+    "avg": 616.52,
+    "ltp": 550.6,
+    "prev_close": 551.7,
+    "intraday_pct": -0.2,
     "milestone": 0
   },
   "AACI043934|SPACEINCUBA": {
@@ -121,46 +81,6 @@
     "intraday_pct": 0.0,
     "milestone": 0
   },
-  "AACI043934|RBA": {
-    "account": "Roshan lal",
-    "stock": "RBA",
-    "qty": 501,
-    "avg": 97.46,
-    "ltp": 88.27,
-    "prev_close": 87.82,
-    "intraday_pct": 0.51,
-    "milestone": 0
-  },
-  "AACI043934|TTML": {
-    "account": "Roshan lal",
-    "stock": "TTML",
-    "qty": 357,
-    "avg": 38.81,
-    "ltp": 33.32,
-    "prev_close": 32.21,
-    "intraday_pct": 3.45,
-    "milestone": 5
-  },
-  "AACI043934|HDIL-BZ": {
-    "account": "Roshan lal",
-    "stock": "HDIL-BZ",
-    "qty": 150,
-    "avg": 1.56,
-    "ltp": 1.46,
-    "prev_close": 1.47,
-    "intraday_pct": -0.68,
-    "milestone": 0
-  },
-  "AACI043934|HDBFS": {
-    "account": "Roshan lal",
-    "stock": "HDBFS",
-    "qty": 524,
-    "avg": 616.52,
-    "ltp": 550.7,
-    "prev_close": 551.7,
-    "intraday_pct": -0.18,
-    "milestone": 0
-  },
   "AACI043934|MUKKA-BE": {
     "account": "Roshan lal",
     "stock": "MUKKA-BE",
@@ -171,34 +91,114 @@
     "intraday_pct": 0.36,
     "milestone": 0
   },
+  "AACI043934|HDFCLIFE": {
+    "account": "Roshan lal",
+    "stock": "HDFCLIFE",
+    "qty": 50,
+    "avg": 536.0,
+    "ltp": 587.15,
+    "prev_close": 594.4,
+    "intraday_pct": -1.22,
+    "milestone": 0
+  },
+  "AACI043934|TTML": {
+    "account": "Roshan lal",
+    "stock": "TTML",
+    "qty": 357,
+    "avg": 38.81,
+    "ltp": 33.3,
+    "prev_close": 32.21,
+    "intraday_pct": 3.38,
+    "milestone": 5
+  },
+  "AACI043934|JPPOWER": {
+    "account": "Roshan lal",
+    "stock": "JPPOWER",
+    "qty": 100,
+    "avg": 17.75,
+    "ltp": 13.16,
+    "prev_close": 13.06,
+    "intraday_pct": 0.77,
+    "milestone": 0
+  },
+  "AACI043934|NTPC": {
+    "account": "Roshan lal",
+    "stock": "NTPC",
+    "qty": 1,
+    "avg": 338.45,
+    "ltp": 320.45,
+    "prev_close": 320.25,
+    "intraday_pct": 0.06,
+    "milestone": 0
+  },
+  "AACI043934|GKENERGY": {
+    "account": "Roshan lal",
+    "stock": "GKENERGY",
+    "qty": 98,
+    "avg": 142.82,
+    "ltp": 95.66,
+    "prev_close": 94.67,
+    "intraday_pct": 1.05,
+    "milestone": 0
+  },
+  "AACI043934|JARO": {
+    "account": "Roshan lal",
+    "stock": "JARO",
+    "qty": 16,
+    "avg": 483.35,
+    "ltp": 391.45,
+    "prev_close": 389.1,
+    "intraday_pct": 0.6,
+    "milestone": 0
+  },
+  "AACI043934|CEIGALL": {
+    "account": "Roshan lal",
+    "stock": "CEIGALL",
+    "qty": 974,
+    "avg": 392.36,
+    "ltp": 376.0,
+    "prev_close": 381.5,
+    "intraday_pct": -1.44,
+    "milestone": 0
+  },
+  "AACI043934|VIKRAMSOLR": {
+    "account": "Roshan lal",
+    "stock": "VIKRAMSOLR",
+    "qty": 245,
+    "avg": 165.51,
+    "ltp": 142.66,
+    "prev_close": 141.04,
+    "intraday_pct": 1.15,
+    "milestone": 0
+  },
+  "AACI043592|VEEDOL": {
+    "account": "Aniket",
+    "stock": "VEEDOL",
+    "qty": 5,
+    "avg": 1405.4,
+    "ltp": 1342.1,
+    "prev_close": 1333.9,
+    "intraday_pct": 0.61,
+    "milestone": 0
+  },
+  "AACI043592|FCSSOFT": {
+    "account": "Aniket",
+    "stock": "FCSSOFT",
+    "qty": 1000,
+    "avg": 1.54,
+    "ltp": 1.37,
+    "prev_close": 1.36,
+    "intraday_pct": 0.74,
+    "milestone": 0
+  },
   "AACI043592|SIGACHI": {
     "account": "Aniket",
     "stock": "SIGACHI",
     "qty": 1000,
     "avg": 26.03,
-    "ltp": 31.15,
+    "ltp": 31.04,
     "prev_close": 30.16,
-    "intraday_pct": 3.28,
-    "milestone": 0
-  },
-  "AACI043592|TCS": {
-    "account": "Aniket",
-    "stock": "TCS",
-    "qty": 12,
-    "avg": 2221.1,
-    "ltp": 2584.1,
-    "prev_close": 2640.3,
-    "intraday_pct": -2.13,
-    "milestone": 0
-  },
-  "AACI043592|VMSTMT": {
-    "account": "Aniket",
-    "stock": "VMSTMT",
-    "qty": 1000,
-    "avg": 44.46,
-    "ltp": 38.62,
-    "prev_close": 38.0,
-    "intraday_pct": 1.63,
+    "intraday_pct": 2.92,
     "milestone": 0
   },
   "AACI043592|BASILIC-SM": {
@@ -211,44 +211,24 @@
     "intraday_pct": 0.21,
     "milestone": 0
   },
+  "AACI043592|TCS": {
+    "account": "Aniket",
+    "stock": "TCS",
+    "qty": 12,
+    "avg": 2221.1,
+    "ltp": 2584.6,
+    "prev_close": 2640.3,
+    "intraday_pct": -2.11,
+    "milestone": 0
+  },
   "AACI043592|RELIANCE": {
     "account": "Aniket",
     "stock": "RELIANCE",
     "qty": 1,
     "avg": 1187.05,
-    "ltp": 1386.3,
+    "ltp": 1386.8,
     "prev_close": 1396.2,
-    "intraday_pct": -0.71,
-    "milestone": 0
-  },
-  "AACI043592|EASEMYTRIP": {
-    "account": "Aniket",
-    "stock": "EASEMYTRIP",
-    "qty": 1900,
-    "avg": 6.85,
-    "ltp": 6.19,
-    "prev_close": 6.32,
-    "intraday_pct": -2.06,
-    "milestone": 0
-  },
-  "AACI043592|VEEDOL": {
-    "account": "Aniket",
-    "stock": "VEEDOL",
-    "qty": 5,
-    "avg": 1405.4,
-    "ltp": 1343.0,
-    "prev_close": 1333.9,
-    "intraday_pct": 0.68,
-    "milestone": 0
-  },
-  "AACI043592|FCSSOFT": {
-    "account": "Aniket",
-    "stock": "FCSSOFT",
-    "qty": 1000,
-    "avg": 1.54,
-    "ltp": 1.36,
-    "prev_close": 1.36,
-    "intraday_pct": 0.0,
+    "intraday_pct": -0.67,
     "milestone": 0
   },
   "AACI043592|LXCHEM": {
@@ -261,6 +241,66 @@
     "intraday_pct": 0.73,
     "milestone": 0
   },
+  "AACI043592|VMSTMT": {
+    "account": "Aniket",
+    "stock": "VMSTMT",
+    "qty": 1000,
+    "avg": 44.46,
+    "ltp": 38.62,
+    "prev_close": 38.0,
+    "intraday_pct": 1.63,
+    "milestone": 0
+  },
+  "AACI043592|EASEMYTRIP": {
+    "account": "Aniket",
+    "stock": "EASEMYTRIP",
+    "qty": 1900,
+    "avg": 6.85,
+    "ltp": 6.2,
+    "prev_close": 6.32,
+    "intraday_pct": -1.9,
+    "milestone": 0
+  },
+  "AACI063602|TEMPSENS": {
+    "account": "Bhumika",
+    "stock": "TEMPSENS",
+    "qty": 50,
+    "avg": 300.0,
+    "ltp": 478.8,
+    "prev_close": 488.8,
+    "intraday_pct": -2.05,
+    "milestone": 0
+  },
+  "AACI063602|SHAREINDIA": {
+    "account": "Bhumika",
+    "stock": "SHAREINDIA",
+    "qty": 400,
+    "avg": 172.15,
+    "ltp": 175.96,
+    "prev_close": 173.57,
+    "intraday_pct": 1.38,
+    "milestone": 0
+  },
+  "AACI063602|SBICARD": {
+    "account": "Bhumika",
+    "stock": "SBICARD",
+    "qty": 90,
+    "avg": 555.92,
+    "ltp": 578.25,
+    "prev_close": 586.1,
+    "intraday_pct": -1.34,
+    "milestone": 0
+  },
+  "AACI063602|TONBO": {
+    "account": "Bhumika",
+    "stock": "TONBO",
+    "qty": 225,
+    "avg": 1228.65,
+    "ltp": 1392.7,
+    "prev_close": 1379.0,
+    "intraday_pct": 0.99,
+    "milestone": 0
+  },
   "AACI063602|BASILIC-SM": {
     "account": "Bhumika",
     "stock": "BASILIC-SM",
@@ -271,54 +311,14 @@
     "intraday_pct": 0.21,
     "milestone": 0
   },
-  "AACI063602|TEMPSENS": {
-    "account": "Bhumika",
-    "stock": "TEMPSENS",
-    "qty": 50,
-    "avg": 300.0,
-    "ltp": 478.9,
-    "prev_close": 488.8,
-    "intraday_pct": -2.03,
-    "milestone": 0
-  },
-  "AACI063602|SHAREINDIA": {
-    "account": "Bhumika",
-    "stock": "SHAREINDIA",
-    "qty": 400,
-    "avg": 172.15,
-    "ltp": 175.44,
-    "prev_close": 173.57,
-    "intraday_pct": 1.08,
-    "milestone": 0
-  },
-  "AACI063602|SBICARD": {
-    "account": "Bhumika",
-    "stock": "SBICARD",
-    "qty": 90,
-    "avg": 555.92,
-    "ltp": 576.5,
-    "prev_close": 586.1,
-    "intraday_pct": -1.64,
-    "milestone": 0
-  },
-  "AACI063602|TONBO": {
-    "account": "Bhumika",
-    "stock": "TONBO",
-    "qty": 225,
-    "avg": 1228.65,
-    "ltp": 1391.0,
-    "prev_close": 1379.0,
-    "intraday_pct": 0.87,
-    "milestone": 0
-  },
   "R297279|HDBFS": {
     "account": "Rakesh Bansal",
     "stock": "HDBFS",
     "qty": 84,
     "avg": 740.0,
-    "ltp": 550.6,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.2,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "R297279|CEIGALL": {
@@ -326,9 +326,9 @@
     "stock": "CEIGALL",
     "qty": 37,
     "avg": 401.0,
-    "ltp": 376.0,
+    "ltp": 377.35,
     "prev_close": 381.5,
-    "intraday_pct": -1.44,
+    "intraday_pct": -1.09,
     "milestone": 0
   },
   "R297279|BASILIC-SM": {
@@ -356,189 +356,9 @@
     "stock": "BAJAJHFL",
     "qty": 358,
     "avg": 73.33,
-    "ltp": 80.17,
+    "ltp": 80.27,
     "prev_close": 80.19,
-    "intraday_pct": -0.02,
-    "milestone": 0
-  },
-  "R282962|SUPRIYA": {
-    "account": "Reena devi",
-    "stock": "SUPRIYA",
-    "qty": 55,
-    "avg": 272.0,
-    "ltp": 646.65,
-    "prev_close": 606.05,
-    "intraday_pct": 6.7,
-    "milestone": 5
-  },
-  "R282962|TTML": {
-    "account": "Reena devi",
-    "stock": "TTML",
-    "qty": 226,
-    "avg": 40.15,
-    "ltp": 33.3,
-    "prev_close": 32.21,
-    "intraday_pct": 3.38,
-    "milestone": 5
-  },
-  "R282962|GRINFRA": {
-    "account": "Reena devi",
-    "stock": "GRINFRA",
-    "qty": 17,
-    "avg": 893.6,
-    "ltp": 744.85,
-    "prev_close": 747.4,
-    "intraday_pct": -0.34,
-    "milestone": 0
-  },
-  "R282962|RHFL-BZ": {
-    "account": "Reena devi",
-    "stock": "RHFL-BZ",
-    "qty": 40,
-    "avg": 1.86,
-    "ltp": 1.37,
-    "prev_close": 1.38,
-    "intraday_pct": -0.72,
-    "milestone": 0
-  },
-  "R282962|RBA": {
-    "account": "Reena devi",
-    "stock": "RBA",
-    "qty": 301,
-    "avg": 65.87,
-    "ltp": 88.27,
-    "prev_close": 87.82,
-    "intraday_pct": 0.51,
-    "milestone": 0
-  },
-  "R282962|JIOFIN": {
-    "account": "Reena devi",
-    "stock": "JIOFIN",
-    "qty": 66,
-    "avg": 240.03,
-    "ltp": 224.46,
-    "prev_close": 227.0,
-    "intraday_pct": -1.12,
-    "milestone": 0
-  },
-  "R282962|TENNIND": {
-    "account": "Reena devi",
-    "stock": "TENNIND",
-    "qty": 37,
-    "avg": 530.12,
-    "ltp": 451.1,
-    "prev_close": 444.95,
-    "intraday_pct": 1.38,
-    "milestone": 0
-  },
-  "R282962|CEIGALL": {
-    "account": "Reena devi",
-    "stock": "CEIGALL",
-    "qty": 37,
-    "avg": 404.0,
-    "ltp": 376.0,
-    "prev_close": 381.5,
-    "intraday_pct": -1.44,
-    "milestone": 0
-  },
-  "R282962|WELSPUNLIV": {
-    "account": "Reena devi",
-    "stock": "WELSPUNLIV",
-    "qty": 123,
-    "avg": 166.04,
-    "ltp": 281.6,
-    "prev_close": 280.35,
-    "intraday_pct": 0.45,
-    "milestone": 0
-  },
-  "R282962|SIGACHI": {
-    "account": "Reena devi",
-    "stock": "SIGACHI",
-    "qty": 4195,
-    "avg": 0.12,
-    "ltp": 31.07,
-    "prev_close": 30.16,
-    "intraday_pct": 3.02,
-    "milestone": 0
-  },
-  "R282962|HAPPSTMNDS": {
-    "account": "Reena devi",
-    "stock": "HAPPSTMNDS",
-    "qty": 15,
-    "avg": 376.3,
-    "ltp": 277.75,
-    "prev_close": 284.95,
-    "intraday_pct": -2.53,
-    "milestone": 0
-  },
-  "R282962|ROUTE": {
-    "account": "Reena devi",
-    "stock": "ROUTE",
-    "qty": 50,
-    "avg": 10.0,
-    "ltp": 436.0,
-    "prev_close": 413.1,
-    "intraday_pct": 5.54,
-    "milestone": 5
-  },
-  "R282962|EASEMYTRIP": {
-    "account": "Reena devi",
-    "stock": "EASEMYTRIP",
-    "qty": 4160,
-    "avg": 26.44,
-    "ltp": 6.18,
-    "prev_close": 6.32,
-    "intraday_pct": -2.22,
-    "milestone": 0
-  },
-  "R282962|CLEAN": {
-    "account": "Reena devi",
-    "stock": "CLEAN",
-    "qty": 20,
-    "avg": 756.55,
-    "ltp": 685.4,
-    "prev_close": 682.9,
-    "intraday_pct": 0.37,
-    "milestone": 0
-  },
-  "R282962|LICI": {
-    "account": "Reena devi",
-    "stock": "LICI",
-    "qty": 60,
-    "avg": 452.0,
-    "ltp": 406.65,
-    "prev_close": 410.0,
-    "intraday_pct": -0.82,
-    "milestone": 0
-  },
-  "R282962|RPOWER": {
-    "account": "Reena devi",
-    "stock": "RPOWER",
-    "qty": 187,
-    "avg": 24.07,
-    "ltp": 17.25,
-    "prev_close": 17.12,
-    "intraday_pct": 0.76,
-    "milestone": 0
-  },
-  "R282962|HERANBA": {
-    "account": "Reena devi",
-    "stock": "HERANBA",
-    "qty": 23,
-    "avg": 643.0,
-    "ltp": 142.3,
-    "prev_close": 141.12,
-    "intraday_pct": 0.84,
-    "milestone": 0
-  },
-  "R282962|ADANIGREEN": {
-    "account": "Reena devi",
-    "stock": "ADANIGREEN",
-    "qty": 30,
-    "avg": 2330.0,
-    "ltp": 1343.6,
-    "prev_close": 1348.8,
-    "intraday_pct": -0.39,
+    "intraday_pct": 0.1,
     "milestone": 0
   },
   "R282962|VARROC": {
@@ -546,39 +366,89 @@
     "stock": "VARROC",
     "qty": 15,
     "avg": 680.75,
-    "ltp": 779.5,
+    "ltp": 778.65,
     "prev_close": 782.45,
-    "intraday_pct": -0.38,
+    "intraday_pct": -0.49,
     "milestone": 0
   },
-  "R282962|ONMOBILE": {
+  "R282962|GRINFRA": {
     "account": "Reena devi",
-    "stock": "ONMOBILE",
-    "qty": 500,
-    "avg": 61.05,
-    "ltp": 50.34,
-    "prev_close": 50.89,
-    "intraday_pct": -1.08,
+    "stock": "GRINFRA",
+    "qty": 17,
+    "avg": 893.6,
+    "ltp": 745.0,
+    "prev_close": 747.4,
+    "intraday_pct": -0.32,
     "milestone": 0
   },
-  "R282962|BAJAJHIND": {
+  "R282962|TTML": {
     "account": "Reena devi",
-    "stock": "BAJAJHIND",
-    "qty": 150,
-    "avg": 18.06,
-    "ltp": 17.39,
-    "prev_close": 17.16,
-    "intraday_pct": 1.34,
+    "stock": "TTML",
+    "qty": 226,
+    "avg": 40.15,
+    "ltp": 33.27,
+    "prev_close": 32.21,
+    "intraday_pct": 3.29,
+    "milestone": 5
+  },
+  "R282962|LICI": {
+    "account": "Reena devi",
+    "stock": "LICI",
+    "qty": 60,
+    "avg": 452.0,
+    "ltp": 406.4,
+    "prev_close": 410.0,
+    "intraday_pct": -0.88,
     "milestone": 0
   },
-  "R282962|HDBFS": {
+  "R282962|WELSPUNLIV": {
     "account": "Reena devi",
-    "stock": "HDBFS",
-    "qty": 84,
-    "avg": 709.07,
-    "ltp": 550.6,
-    "prev_close": 551.7,
-    "intraday_pct": -0.2,
+    "stock": "WELSPUNLIV",
+    "qty": 123,
+    "avg": 166.04,
+    "ltp": 281.99,
+    "prev_close": 280.35,
+    "intraday_pct": 0.58,
+    "milestone": 0
+  },
+  "R282962|CLEAN": {
+    "account": "Reena devi",
+    "stock": "CLEAN",
+    "qty": 20,
+    "avg": 756.55,
+    "ltp": 685.0,
+    "prev_close": 682.9,
+    "intraday_pct": 0.31,
+    "milestone": 0
+  },
+  "R282962|ROUTE": {
+    "account": "Reena devi",
+    "stock": "ROUTE",
+    "qty": 50,
+    "avg": 10.0,
+    "ltp": 435.1,
+    "prev_close": 413.1,
+    "intraday_pct": 5.33,
+    "milestone": 5
+  },
+  "R282962|ADANIGREEN": {
+    "account": "Reena devi",
+    "stock": "ADANIGREEN",
+    "qty": 30,
+    "avg": 2330.0,
+    "ltp": 1344.1,
+    "prev_close": 1348.8,
+    "intraday_pct": -0.35,
+    "milestone": 0
+  },
+  "R282962|EASEMYTRIP": {
+    "account": "Reena devi",
+    "stock": "EASEMYTRIP",
+    "qty": 4160,
+    "avg": 26.44,
+    "ltp": 6.2,
+    "prev_close": 6.32,
+    "intraday_pct": -1.9,
     "milestone": 0
   },
   "R282962|RELINFRA-BE": {
@@ -596,79 +466,139 @@
     "stock": "HDFCBANK",
     "qty": 38,
     "avg": 702.69,
-    "ltp": 862.2,
+    "ltp": 862.75,
     "prev_close": 862.0,
-    "intraday_pct": 0.02,
+    "intraday_pct": 0.09,
     "milestone": 0
   },
-  "AAAF368129|WELSPUNLIV": {
-    "account": "Rukmani devi",
-    "stock": "WELSPUNLIV",
-    "qty": 200,
-    "avg": 162.0,
-    "ltp": 281.69,
-    "prev_close": 280.35,
-    "intraday_pct": 0.48,
+  "R282962|ONMOBILE": {
+    "account": "Reena devi",
+    "stock": "ONMOBILE",
+    "qty": 500,
+    "avg": 61.05,
+    "ltp": 50.31,
+    "prev_close": 50.89,
+    "intraday_pct": -1.14,
     "milestone": 0
   },
-  "AAAF368129|NAZARA": {
-    "account": "Rukmani devi",
-    "stock": "NAZARA",
-    "qty": 240,
-    "avg": 302.3,
-    "ltp": 383.7,
-    "prev_close": 381.25,
-    "intraday_pct": 0.64,
+  "R282962|RHFL-BZ": {
+    "account": "Reena devi",
+    "stock": "RHFL-BZ",
+    "qty": 40,
+    "avg": 1.86,
+    "ltp": 1.39,
+    "prev_close": 1.38,
+    "intraday_pct": 0.72,
     "milestone": 0
   },
-  "AAAF368129|SIGACHI": {
-    "account": "Rukmani devi",
+  "R282962|HDBFS": {
+    "account": "Reena devi",
+    "stock": "HDBFS",
+    "qty": 84,
+    "avg": 709.07,
+    "ltp": 550.7,
+    "prev_close": 551.7,
+    "intraday_pct": -0.18,
+    "milestone": 0
+  },
+  "R282962|SIGACHI": {
+    "account": "Reena devi",
     "stock": "SIGACHI",
-    "qty": 2454,
-    "avg": 25.5,
-    "ltp": 31.09,
+    "qty": 4195,
+    "avg": 0.12,
+    "ltp": 31.04,
     "prev_close": 30.16,
-    "intraday_pct": 3.08,
+    "intraday_pct": 2.92,
     "milestone": 0
   },
-  "AAAF368129|CEIGALL": {
-    "account": "Rukmani devi",
+  "R282962|RBA": {
+    "account": "Reena devi",
+    "stock": "RBA",
+    "qty": 301,
+    "avg": 65.87,
+    "ltp": 88.11,
+    "prev_close": 87.82,
+    "intraday_pct": 0.33,
+    "milestone": 0
+  },
+  "R282962|BAJAJHIND": {
+    "account": "Reena devi",
+    "stock": "BAJAJHIND",
+    "qty": 150,
+    "avg": 18.06,
+    "ltp": 17.37,
+    "prev_close": 17.16,
+    "intraday_pct": 1.22,
+    "milestone": 0
+  },
+  "R282962|HERANBA": {
+    "account": "Reena devi",
+    "stock": "HERANBA",
+    "qty": 23,
+    "avg": 643.0,
+    "ltp": 142.3,
+    "prev_close": 141.12,
+    "intraday_pct": 0.84,
+    "milestone": 0
+  },
+  "R282962|RPOWER": {
+    "account": "Reena devi",
+    "stock": "RPOWER",
+    "qty": 187,
+    "avg": 24.07,
+    "ltp": 17.25,
+    "prev_close": 17.12,
+    "intraday_pct": 0.76,
+    "milestone": 0
+  },
+  "R282962|CEIGALL": {
+    "account": "Reena devi",
     "stock": "CEIGALL",
-    "qty": 74,
-    "avg": 337.1,
-    "ltp": 375.95,
+    "qty": 37,
+    "avg": 404.0,
+    "ltp": 377.35,
     "prev_close": 381.5,
-    "intraday_pct": -1.45,
+    "intraday_pct": -1.09,
     "milestone": 0
   },
-  "AAAF368129|VIKRAMSOLR": {
-    "account": "Rukmani devi",
-    "stock": "VIKRAMSOLR",
-    "qty": 45,
-    "avg": 182.8,
-    "ltp": 142.66,
-    "prev_close": 141.04,
-    "intraday_pct": 1.15,
+  "R282962|TENNIND": {
+    "account": "Reena devi",
+    "stock": "TENNIND",
+    "qty": 37,
+    "avg": 530.12,
+    "ltp": 451.35,
+    "prev_close": 444.95,
+    "intraday_pct": 1.44,
     "milestone": 0
   },
-  "AAAF368129|IBULLSLTD": {
-    "account": "Rukmani devi",
-    "stock": "IBULLSLTD",
-    "qty": 605,
-    "avg": 30.53,
-    "ltp": 28.33,
-    "prev_close": 28.23,
-    "intraday_pct": 0.35,
+  "R282962|JIOFIN": {
+    "account": "Reena devi",
+    "stock": "JIOFIN",
+    "qty": 66,
+    "avg": 240.03,
+    "ltp": 224.6,
+    "prev_close": 227.0,
+    "intraday_pct": -1.06,
     "milestone": 0
   },
-  "AAAF368129|TTML": {
-    "account": "Rukmani devi",
-    "stock": "TTML",
-    "qty": 100,
-    "avg": 39.38,
-    "ltp": 33.27,
-    "prev_close": 32.21,
-    "intraday_pct": 3.29,
+  "R282962|HAPPSTMNDS": {
+    "account": "Reena devi",
+    "stock": "HAPPSTMNDS",
+    "qty": 15,
+    "avg": 376.3,
+    "ltp": 277.7,
+    "prev_close": 284.95,
+    "intraday_pct": -2.54,
+    "milestone": 0
+  },
+  "R282962|SUPRIYA": {
+    "account": "Reena devi",
+    "stock": "SUPRIYA",
+    "qty": 55,
+    "avg": 272.0,
+    "ltp": 644.3,
+    "prev_close": 606.05,
+    "intraday_pct": 6.31,
     "milestone": 5
   },
   "AAAF368129|MUKKA-BE": {
@@ -681,14 +611,84 @@
     "intraday_pct": 0.36,
     "milestone": 0
   },
+  "AAAF368129|SIGACHI": {
+    "account": "Rukmani devi",
+    "stock": "SIGACHI",
+    "qty": 2454,
+    "avg": 25.5,
+    "ltp": 31.07,
+    "prev_close": 30.16,
+    "intraday_pct": 3.02,
+    "milestone": 0
+  },
+  "AAAF368129|NAZARA": {
+    "account": "Rukmani devi",
+    "stock": "NAZARA",
+    "qty": 240,
+    "avg": 302.3,
+    "ltp": 384.05,
+    "prev_close": 381.25,
+    "intraday_pct": 0.73,
+    "milestone": 0
+  },
   "AAAF368129|SHAREINDIA": {
     "account": "Rukmani devi",
     "stock": "SHAREINDIA",
     "qty": 200,
     "avg": 191.57,
-    "ltp": 175.42,
+    "ltp": 175.44,
     "prev_close": 173.57,
-    "intraday_pct": 1.07,
+    "intraday_pct": 1.08,
+    "milestone": 0
+  },
+  "AAAF368129|CEIGALL": {
+    "account": "Rukmani devi",
+    "stock": "CEIGALL",
+    "qty": 74,
+    "avg": 337.1,
+    "ltp": 376.0,
+    "prev_close": 381.5,
+    "intraday_pct": -1.44,
+    "milestone": 0
+  },
+  "AAAF368129|WELSPUNLIV": {
+    "account": "Rukmani devi",
+    "stock": "WELSPUNLIV",
+    "qty": 200,
+    "avg": 162.0,
+    "ltp": 281.6,
+    "prev_close": 280.35,
+    "intraday_pct": 0.45,
+    "milestone": 0
+  },
+  "AAAF368129|IBULLSLTD": {
+    "account": "Rukmani devi",
+    "stock": "IBULLSLTD",
+    "qty": 605,
+    "avg": 30.53,
+    "ltp": 28.35,
+    "prev_close": 28.23,
+    "intraday_pct": 0.43,
+    "milestone": 0
+  },
+  "AAAF368129|TTML": {
+    "account": "Rukmani devi",
+    "stock": "TTML",
+    "qty": 100,
+    "avg": 39.38,
+    "ltp": 33.3,
+    "prev_close": 32.21,
+    "intraday_pct": 3.38,
+    "milestone": 5
+  },
+  "AAAF368129|VIKRAMSOLR": {
+    "account": "Rukmani devi",
+    "stock": "VIKRAMSOLR",
+    "qty": 45,
+    "avg": 182.8,
+    "ltp": 142.66,
+    "prev_close": 141.04,
+    "intraday_pct": 1.15,
     "milestone": 0
   },
   "R597315|HDBFS": {
@@ -696,9 +696,9 @@
     "stock": "HDBFS",
     "qty": 84,
     "avg": 653.48,
-    "ltp": 550.6,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.2,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "S54748898|VIKRAMSOLR": {
@@ -706,9 +706,9 @@
     "stock": "VIKRAMSOLR",
     "qty": 45,
     "avg": 332.0,
-    "ltp": 142.66,
+    "ltp": 142.64,
     "prev_close": 141.04,
-    "intraday_pct": 1.15,
+    "intraday_pct": 1.13,
     "milestone": 0
   },
   "S54748898|HDBFS": {
@@ -716,160 +716,20 @@
     "stock": "HDBFS",
     "qty": 84,
     "avg": 740.0,
-    "ltp": 550.25,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
-  "AACI064276|ATLANTAELE": {
+  "AACI064276|TTML": {
     "account": "RAJESH KUMAR",
-    "stock": "ATLANTAELE",
-    "qty": 17,
-    "avg": 1881.7,
-    "ltp": 1519.2,
-    "prev_close": 1442.6,
-    "intraday_pct": 5.31,
+    "stock": "TTML",
+    "qty": 350,
+    "avg": 39.75,
+    "ltp": 33.3,
+    "prev_close": 32.21,
+    "intraday_pct": 3.38,
     "milestone": 5
-  },
-  "AACI064276|ANGELONE": {
-    "account": "RAJESH KUMAR",
-    "stock": "ANGELONE",
-    "qty": 2362,
-    "avg": 301.1,
-    "ltp": 380.15,
-    "prev_close": 358.0,
-    "intraday_pct": 6.19,
-    "milestone": 5
-  },
-  "AACI064276|MTNL": {
-    "account": "RAJESH KUMAR",
-    "stock": "MTNL",
-    "qty": 2001,
-    "avg": 26.55,
-    "ltp": 24.56,
-    "prev_close": 24.47,
-    "intraday_pct": 0.37,
-    "milestone": 0
-  },
-  "AACI064276|SIGACHI": {
-    "account": "RAJESH KUMAR",
-    "stock": "SIGACHI",
-    "qty": 1000,
-    "avg": 25.93,
-    "ltp": 31.07,
-    "prev_close": 30.16,
-    "intraday_pct": 3.02,
-    "milestone": 0
-  },
-  "AACI064276|SUVIDHAA": {
-    "account": "RAJESH KUMAR",
-    "stock": "SUVIDHAA",
-    "qty": 65,
-    "avg": 2.42,
-    "ltp": 1.73,
-    "prev_close": 1.85,
-    "intraday_pct": -6.49,
-    "milestone": 0
-  },
-  "AACI064276|TONBO": {
-    "account": "RAJESH KUMAR",
-    "stock": "TONBO",
-    "qty": 152,
-    "avg": 1613.93,
-    "ltp": 1391.0,
-    "prev_close": 1379.0,
-    "intraday_pct": 0.87,
-    "milestone": 0
-  },
-  "AACI064276|NAZARA": {
-    "account": "RAJESH KUMAR",
-    "stock": "NAZARA",
-    "qty": 685,
-    "avg": 361.25,
-    "ltp": 384.05,
-    "prev_close": 381.25,
-    "intraday_pct": 0.73,
-    "milestone": 0
-  },
-  "AACI064276|BSOFT": {
-    "account": "RAJESH KUMAR",
-    "stock": "BSOFT",
-    "qty": 30,
-    "avg": 311.15,
-    "ltp": 300.2,
-    "prev_close": 303.5,
-    "intraday_pct": -1.09,
-    "milestone": 0
-  },
-  "AACI064276|WELSPUNLIV": {
-    "account": "RAJESH KUMAR",
-    "stock": "WELSPUNLIV",
-    "qty": 200,
-    "avg": 162.3,
-    "ltp": 281.6,
-    "prev_close": 280.35,
-    "intraday_pct": 0.45,
-    "milestone": 0
-  },
-  "AACI064276|RELIANCE": {
-    "account": "RAJESH KUMAR",
-    "stock": "RELIANCE",
-    "qty": 1,
-    "avg": 1186.75,
-    "ltp": 1388.0,
-    "prev_close": 1396.2,
-    "intraday_pct": -0.59,
-    "milestone": 0
-  },
-  "AACI064276|MUKKA-BE": {
-    "account": "RAJESH KUMAR",
-    "stock": "MUKKA-BE",
-    "qty": 955,
-    "avg": 23.04,
-    "ltp": 24.76,
-    "prev_close": 24.67,
-    "intraday_pct": 0.36,
-    "milestone": 0
-  },
-  "AACI064276|INDIAMART": {
-    "account": "RAJESH KUMAR",
-    "stock": "INDIAMART",
-    "qty": 20,
-    "avg": 1751.0,
-    "ltp": 1547.8,
-    "prev_close": 1534.6,
-    "intraday_pct": 0.86,
-    "milestone": 0
-  },
-  "AACI064276|SONACOMS": {
-    "account": "RAJESH KUMAR",
-    "stock": "SONACOMS",
-    "qty": 50,
-    "avg": 720.5,
-    "ltp": 891.7,
-    "prev_close": 881.5,
-    "intraday_pct": 1.16,
-    "milestone": 0
-  },
-  "AACI064276|LICI": {
-    "account": "RAJESH KUMAR",
-    "stock": "LICI",
-    "qty": 26,
-    "avg": 423.9,
-    "ltp": 406.65,
-    "prev_close": 410.0,
-    "intraday_pct": -0.82,
-    "milestone": 0
-  },
-  "AACI064276|KRETTOSYS": {
-    "account": "RAJESH KUMAR",
-    "stock": "KRETTOSYS",
-    "qty": 10800,
-    "avg": 0.0,
-    "ltp": 0.38,
-    "prev_close": 0.38,
-    "intraday_pct": 0.0,
-    "milestone": 0
   },
   "AACI064276|DRCSYSTEMS": {
     "account": "RAJESH KUMAR",
@@ -891,44 +751,84 @@
     "intraday_pct": 0.0,
     "milestone": 5
   },
-  "AACI064276|CENTEXT": {
+  "AACI064276|INDIAMART": {
     "account": "RAJESH KUMAR",
-    "stock": "CENTEXT",
-    "qty": 500,
-    "avg": 20.19,
-    "ltp": 16.69,
-    "prev_close": 16.63,
+    "stock": "INDIAMART",
+    "qty": 20,
+    "avg": 1751.0,
+    "ltp": 1547.8,
+    "prev_close": 1534.6,
+    "intraday_pct": 0.86,
+    "milestone": 0
+  },
+  "AACI064276|WELSPUNLIV": {
+    "account": "RAJESH KUMAR",
+    "stock": "WELSPUNLIV",
+    "qty": 200,
+    "avg": 162.3,
+    "ltp": 281.6,
+    "prev_close": 280.35,
+    "intraday_pct": 0.45,
+    "milestone": 0
+  },
+  "AACI064276|BSOFT": {
+    "account": "RAJESH KUMAR",
+    "stock": "BSOFT",
+    "qty": 30,
+    "avg": 311.15,
+    "ltp": 300.2,
+    "prev_close": 303.5,
+    "intraday_pct": -1.09,
+    "milestone": 0
+  },
+  "AACI064276|ATLANTAELE": {
+    "account": "RAJESH KUMAR",
+    "stock": "ATLANTAELE",
+    "qty": 17,
+    "avg": 1881.7,
+    "ltp": 1519.2,
+    "prev_close": 1442.6,
+    "intraday_pct": 5.31,
+    "milestone": 5
+  },
+  "AACI064276|MUKKA-BE": {
+    "account": "RAJESH KUMAR",
+    "stock": "MUKKA-BE",
+    "qty": 955,
+    "avg": 23.04,
+    "ltp": 24.76,
+    "prev_close": 24.67,
     "intraday_pct": 0.36,
     "milestone": 0
   },
-  "AACI064276|TTML": {
+  "AACI064276|KRETTOSYS": {
     "account": "RAJESH KUMAR",
-    "stock": "TTML",
-    "qty": 350,
-    "avg": 39.75,
-    "ltp": 33.3,
-    "prev_close": 32.21,
-    "intraday_pct": 3.38,
-    "milestone": 5
-  },
-  "AACI064276|SHAREINDIA": {
-    "account": "RAJESH KUMAR",
-    "stock": "SHAREINDIA",
-    "qty": 400,
-    "avg": 174.81,
-    "ltp": 175.44,
-    "prev_close": 173.57,
-    "intraday_pct": 1.08,
+    "stock": "KRETTOSYS",
+    "qty": 10800,
+    "avg": 0.0,
+    "ltp": 0.38,
+    "prev_close": 0.38,
+    "intraday_pct": 0.0,
     "milestone": 0
   },
-  "AACI064276|VIKRAMSOLR": {
+  "AACI064276|SIGACHI": {
     "account": "RAJESH KUMAR",
-    "stock": "VIKRAMSOLR",
-    "qty": 400,
-    "avg": 181.62,
-    "ltp": 142.66,
-    "prev_close": 141.04,
-    "intraday_pct": 1.15,
+    "stock": "SIGACHI",
+    "qty": 1000,
+    "avg": 25.93,
+    "ltp": 31.07,
+    "prev_close": 30.16,
+    "intraday_pct": 3.02,
+    "milestone": 0
+  },
+  "AACI064276|MTNL": {
+    "account": "RAJESH KUMAR",
+    "stock": "MTNL",
+    "qty": 2001,
+    "avg": 26.55,
+    "ltp": 24.56,
+    "prev_close": 24.47,
+    "intraday_pct": 0.37,
     "milestone": 0
   },
   "AACI064276|GVFILM": {
@@ -941,14 +841,144 @@
     "intraday_pct": 0.0,
     "milestone": 0
   },
+  "AACI064276|ANGELONE": {
+    "account": "RAJESH KUMAR",
+    "stock": "ANGELONE",
+    "qty": 2362,
+    "avg": 301.1,
+    "ltp": 380.15,
+    "prev_close": 358.0,
+    "intraday_pct": 6.19,
+    "milestone": 5
+  },
+  "AACI064276|RELIANCE": {
+    "account": "RAJESH KUMAR",
+    "stock": "RELIANCE",
+    "qty": 1,
+    "avg": 1186.75,
+    "ltp": 1388.0,
+    "prev_close": 1396.2,
+    "intraday_pct": -0.59,
+    "milestone": 0
+  },
+  "AACI064276|VIKRAMSOLR": {
+    "account": "RAJESH KUMAR",
+    "stock": "VIKRAMSOLR",
+    "qty": 400,
+    "avg": 181.62,
+    "ltp": 142.66,
+    "prev_close": 141.04,
+    "intraday_pct": 1.15,
+    "milestone": 0
+  },
+  "AACI064276|SUVIDHAA": {
+    "account": "RAJESH KUMAR",
+    "stock": "SUVIDHAA",
+    "qty": 65,
+    "avg": 2.42,
+    "ltp": 1.73,
+    "prev_close": 1.85,
+    "intraday_pct": -6.49,
+    "milestone": 0
+  },
+  "AACI064276|SONACOMS": {
+    "account": "RAJESH KUMAR",
+    "stock": "SONACOMS",
+    "qty": 50,
+    "avg": 720.5,
+    "ltp": 891.7,
+    "prev_close": 881.5,
+    "intraday_pct": 1.16,
+    "milestone": 0
+  },
+  "AACI064276|NAZARA": {
+    "account": "RAJESH KUMAR",
+    "stock": "NAZARA",
+    "qty": 685,
+    "avg": 361.25,
+    "ltp": 384.05,
+    "prev_close": 381.25,
+    "intraday_pct": 0.73,
+    "milestone": 0
+  },
+  "AACI064276|TONBO": {
+    "account": "RAJESH KUMAR",
+    "stock": "TONBO",
+    "qty": 152,
+    "avg": 1613.93,
+    "ltp": 1391.0,
+    "prev_close": 1379.0,
+    "intraday_pct": 0.87,
+    "milestone": 0
+  },
+  "AACI064276|SHAREINDIA": {
+    "account": "RAJESH KUMAR",
+    "stock": "SHAREINDIA",
+    "qty": 400,
+    "avg": 174.81,
+    "ltp": 175.44,
+    "prev_close": 173.57,
+    "intraday_pct": 1.08,
+    "milestone": 0
+  },
+  "AACI064276|LICI": {
+    "account": "RAJESH KUMAR",
+    "stock": "LICI",
+    "qty": 26,
+    "avg": 423.9,
+    "ltp": 406.65,
+    "prev_close": 410.0,
+    "intraday_pct": -0.82,
+    "milestone": 0
+  },
+  "AACI064276|CENTEXT": {
+    "account": "RAJESH KUMAR",
+    "stock": "CENTEXT",
+    "qty": 500,
+    "avg": 20.19,
+    "ltp": 16.69,
+    "prev_close": 16.63,
+    "intraday_pct": 0.36,
+    "milestone": 0
+  },
+  "D54745460|RBA": {
+    "account": "Diksha Bansal",
+    "stock": "RBA",
+    "qty": 1,
+    "avg": 63.02,
+    "ltp": 88.27,
+    "prev_close": 87.82,
+    "intraday_pct": 0.51,
+    "milestone": 0
+  },
+  "D54745460|TEMPSENS": {
+    "account": "Diksha Bansal",
+    "stock": "TEMPSENS",
+    "qty": 50,
+    "avg": 300.0,
+    "ltp": 478.9,
+    "prev_close": 488.8,
+    "intraday_pct": -2.03,
+    "milestone": 0
+  },
+  "D54745460|NTPC": {
+    "account": "Diksha Bansal",
+    "stock": "NTPC",
+    "qty": 1,
+    "avg": 422.44,
+    "ltp": 320.45,
+    "prev_close": 320.25,
+    "intraday_pct": 0.06,
+    "milestone": 0
+  },
   "D54745460|HDBFS": {
     "account": "Diksha Bansal",
     "stock": "HDBFS",
     "qty": 84,
     "avg": 740.0,
-    "ltp": 550.25,
+    "ltp": 550.6,
     "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.2,
     "milestone": 0
   },
   "D54745460|VIKRAMSOLR": {
@@ -959,36 +989,6 @@
     "ltp": 142.66,
     "prev_close": 141.04,
     "intraday_pct": 1.15,
-    "milestone": 0
-  },
-  "D54745460|RBA": {
-    "account": "Diksha Bansal",
-    "stock": "RBA",
-    "qty": 1,
-    "avg": 63.02,
-    "ltp": 88.14,
-    "prev_close": 87.82,
-    "intraday_pct": 0.36,
-    "milestone": 0
-  },
-  "D54745460|TEMPSENS": {
-    "account": "Diksha Bansal",
-    "stock": "TEMPSENS",
-    "qty": 50,
-    "avg": 300.0,
-    "ltp": 478.8,
-    "prev_close": 488.8,
-    "intraday_pct": -2.05,
-    "milestone": 0
-  },
-  "D54745460|NTPC": {
-    "account": "Diksha Bansal",
-    "stock": "NTPC",
-    "qty": 1,
-    "avg": 422.44,
-    "ltp": 320.6,
-    "prev_close": 320.25,
-    "intraday_pct": 0.11,
     "milestone": 0
   },
   "S1136788|CEIGALL": {
@@ -1021,34 +1021,14 @@
     "intraday_pct": 0.51,
     "milestone": 0
   },
-  "R53517293|HDBFS": {
-    "account": "Rajender Kumar",
-    "stock": "HDBFS",
-    "qty": 109,
-    "avg": 730.19,
-    "ltp": 550.25,
-    "prev_close": 551.7,
-    "intraday_pct": -0.26,
-    "milestone": 0
-  },
-  "R53517293|RELIANCE": {
-    "account": "Rajender Kumar",
-    "stock": "RELIANCE",
-    "qty": 1,
-    "avg": 1184.74,
-    "ltp": 1388.0,
-    "prev_close": 1396.2,
-    "intraday_pct": -0.59,
-    "milestone": 0
-  },
   "R53517293|ATLANTAELE": {
     "account": "Rajender Kumar",
     "stock": "ATLANTAELE",
     "qty": 19,
     "avg": 754.0,
-    "ltp": 1517.6,
+    "ltp": 1514.3,
     "prev_close": 1442.6,
-    "intraday_pct": 5.2,
+    "intraday_pct": 4.97,
     "milestone": 5
   },
   "R53517293|AFCONS": {
@@ -1056,9 +1036,9 @@
     "stock": "AFCONS",
     "qty": 240,
     "avg": 463.0,
-    "ltp": 220.45,
+    "ltp": 220.99,
     "prev_close": 223.22,
-    "intraday_pct": -1.24,
+    "intraday_pct": -1.0,
     "milestone": 0
   },
   "R53517293|HAPPSTMNDS": {
@@ -1066,9 +1046,9 @@
     "stock": "HAPPSTMNDS",
     "qty": 100,
     "avg": 655.01,
-    "ltp": 277.55,
+    "ltp": 277.7,
     "prev_close": 284.95,
-    "intraday_pct": -2.6,
+    "intraday_pct": -2.54,
     "milestone": 0
   },
   "R53517293|ROUTE": {
@@ -1076,9 +1056,9 @@
     "stock": "ROUTE",
     "qty": 348,
     "avg": 727.97,
-    "ltp": 435.2,
+    "ltp": 435.1,
     "prev_close": 413.1,
-    "intraday_pct": 5.35,
+    "intraday_pct": 5.33,
     "milestone": 5
   },
   "R53517293|NTPC": {
@@ -1086,29 +1066,29 @@
     "stock": "NTPC",
     "qty": 1,
     "avg": 422.72,
-    "ltp": 320.6,
+    "ltp": 320.7,
     "prev_close": 320.25,
-    "intraday_pct": 0.11,
+    "intraday_pct": 0.14,
     "milestone": 0
   },
-  "AACH009422|VIKRAMSOLR": {
-    "account": "Narender Garg",
-    "stock": "VIKRAMSOLR",
-    "qty": 45,
-    "avg": 177.8,
-    "ltp": 142.66,
-    "prev_close": 141.04,
-    "intraday_pct": 1.15,
-    "milestone": 0
-  },
-  "AACH009422|HDBFS": {
-    "account": "Narender Garg",
+  "R53517293|HDBFS": {
+    "account": "Rajender Kumar",
     "stock": "HDBFS",
-    "qty": 20,
-    "avg": 684.85,
-    "ltp": 550.25,
+    "qty": 109,
+    "avg": 730.19,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.18,
+    "milestone": 0
+  },
+  "R53517293|RELIANCE": {
+    "account": "Rajender Kumar",
+    "stock": "RELIANCE",
+    "qty": 1,
+    "avg": 1184.74,
+    "ltp": 1389.0,
+    "prev_close": 1396.2,
+    "intraday_pct": -0.52,
     "milestone": 0
   },
   "AACH009422|APTUS": {
@@ -1116,39 +1096,29 @@
     "stock": "APTUS",
     "qty": 42,
     "avg": 263.6,
-    "ltp": 188.69,
+    "ltp": 188.77,
     "prev_close": 186.91,
-    "intraday_pct": 0.95,
+    "intraday_pct": 1.0,
     "milestone": 0
   },
-  "AACM885301|RBA": {
-    "account": "Pawan Kumar",
-    "stock": "RBA",
-    "qty": 1,
-    "avg": 91.93,
-    "ltp": 88.27,
-    "prev_close": 87.82,
-    "intraday_pct": 0.51,
+  "AACH009422|VIKRAMSOLR": {
+    "account": "Narender Garg",
+    "stock": "VIKRAMSOLR",
+    "qty": 45,
+    "avg": 177.8,
+    "ltp": 142.64,
+    "prev_close": 141.04,
+    "intraday_pct": 1.13,
     "milestone": 0
   },
-  "AACM885301|TRUALT": {
-    "account": "Pawan Kumar",
-    "stock": "TRUALT",
-    "qty": 30,
-    "avg": 340.05,
-    "ltp": 318.0,
-    "prev_close": 315.35,
-    "intraday_pct": 0.84,
-    "milestone": 0
-  },
-  "AACM885301|AFCONS": {
-    "account": "Pawan Kumar",
-    "stock": "AFCONS",
-    "qty": 288,
-    "avg": 221.91,
-    "ltp": 220.25,
-    "prev_close": 223.22,
-    "intraday_pct": -1.33,
+  "AACH009422|HDBFS": {
+    "account": "Narender Garg",
+    "stock": "HDBFS",
+    "qty": 20,
+    "avg": 684.85,
+    "ltp": 550.7,
+    "prev_close": 551.7,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "AACM885301|HDBFS": {
@@ -1156,9 +1126,39 @@
     "stock": "HDBFS",
     "qty": 20,
     "avg": 573.6,
-    "ltp": 550.6,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.2,
+    "intraday_pct": -0.18,
+    "milestone": 0
+  },
+  "AACM885301|RBA": {
+    "account": "Pawan Kumar",
+    "stock": "RBA",
+    "qty": 1,
+    "avg": 91.93,
+    "ltp": 88.13,
+    "prev_close": 87.82,
+    "intraday_pct": 0.35,
+    "milestone": 0
+  },
+  "AACM885301|TRUALT": {
+    "account": "Pawan Kumar",
+    "stock": "TRUALT",
+    "qty": 30,
+    "avg": 340.05,
+    "ltp": 318.55,
+    "prev_close": 315.35,
+    "intraday_pct": 1.01,
+    "milestone": 0
+  },
+  "AACM885301|AFCONS": {
+    "account": "Pawan Kumar",
+    "stock": "AFCONS",
+    "qty": 288,
+    "avg": 221.91,
+    "ltp": 220.99,
+    "prev_close": 223.22,
+    "intraday_pct": -1.0,
     "milestone": 0
   },
   "P63048331|BAJAJHFL": {
@@ -1166,9 +1166,9 @@
     "stock": "BAJAJHFL",
     "qty": 214,
     "avg": 70.0,
-    "ltp": 80.17,
+    "ltp": 80.24,
     "prev_close": 80.19,
-    "intraday_pct": -0.02,
+    "intraday_pct": 0.06,
     "milestone": 0
   },
   "P63048331|HDBFS": {
@@ -1176,19 +1176,9 @@
     "stock": "HDBFS",
     "qty": 20,
     "avg": 740.0,
-    "ltp": 550.25,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.26,
-    "milestone": 0
-  },
-  "AACM885810|HDBFS": {
-    "account": "Saroj devi",
-    "stock": "HDBFS",
-    "qty": 20,
-    "avg": 566.0,
-    "ltp": 550.25,
-    "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "AACM885810|PCJEWELLER": {
@@ -1196,9 +1186,19 @@
     "stock": "PCJEWELLER",
     "qty": 1,
     "avg": 14.54,
-    "ltp": 14.12,
+    "ltp": 14.14,
     "prev_close": 14.16,
-    "intraday_pct": -0.28,
+    "intraday_pct": -0.14,
+    "milestone": 0
+  },
+  "AACM885810|HDBFS": {
+    "account": "Saroj devi",
+    "stock": "HDBFS",
+    "qty": 20,
+    "avg": 566.0,
+    "ltp": 550.7,
+    "prev_close": 551.7,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "AACM872342|HDBFS": {
@@ -1206,39 +1206,9 @@
     "stock": "HDBFS",
     "qty": 21,
     "avg": 570.06,
-    "ltp": 550.6,
+    "ltp": 550.35,
     "prev_close": 551.7,
-    "intraday_pct": -0.2,
-    "milestone": 0
-  },
-  "AACM873426|TRUALT": {
-    "account": "Rajni Bala",
-    "stock": "TRUALT",
-    "qty": 30,
-    "avg": 339.5,
-    "ltp": 318.0,
-    "prev_close": 315.35,
-    "intraday_pct": 0.84,
-    "milestone": 0
-  },
-  "AACM873426|IDEA": {
-    "account": "Rajni Bala",
-    "stock": "IDEA",
-    "qty": 1,
-    "avg": 13.04,
-    "ltp": 11.61,
-    "prev_close": 11.6,
-    "intraday_pct": 0.09,
-    "milestone": 0
-  },
-  "AACM873426|HDBFS": {
-    "account": "Rajni Bala",
-    "stock": "HDBFS",
-    "qty": 20,
-    "avg": 566.0,
-    "ltp": 550.25,
-    "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.24,
     "milestone": 0
   },
   "AACM873426|JARO": {
@@ -1246,19 +1216,39 @@
     "stock": "JARO",
     "qty": 16,
     "avg": 393.5,
-    "ltp": 391.45,
+    "ltp": 391.05,
     "prev_close": 389.1,
-    "intraday_pct": 0.6,
+    "intraday_pct": 0.5,
     "milestone": 0
   },
-  "AACM848071|IDEA": {
-    "account": "Baby",
+  "AACM873426|TRUALT": {
+    "account": "Rajni Bala",
+    "stock": "TRUALT",
+    "qty": 30,
+    "avg": 339.5,
+    "ltp": 318.55,
+    "prev_close": 315.35,
+    "intraday_pct": 1.01,
+    "milestone": 0
+  },
+  "AACM873426|IDEA": {
+    "account": "Rajni Bala",
     "stock": "IDEA",
     "qty": 1,
     "avg": 13.04,
-    "ltp": 11.6,
+    "ltp": 11.62,
     "prev_close": 11.6,
-    "intraday_pct": 0.0,
+    "intraday_pct": 0.17,
+    "milestone": 0
+  },
+  "AACM873426|HDBFS": {
+    "account": "Rajni Bala",
+    "stock": "HDBFS",
+    "qty": 20,
+    "avg": 566.0,
+    "ltp": 550.7,
+    "prev_close": 551.7,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "AACM848071|HDBFS": {
@@ -1266,29 +1256,19 @@
     "stock": "HDBFS",
     "qty": 20,
     "avg": 566.4,
-    "ltp": 550.6,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.2,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
-  "AACM846943|MONEYVIEW": {
-    "account": "Sandeep Singharia",
-    "stock": "MONEYVIEW",
-    "qty": 444,
-    "avg": 59.07,
-    "ltp": 53.9,
-    "prev_close": 54.0,
-    "intraday_pct": -0.19,
-    "milestone": 0
-  },
-  "AACM846943|IGIL": {
-    "account": "Sandeep Singharia",
-    "stock": "IGIL",
-    "qty": 35,
-    "avg": 430.56,
-    "ltp": 428.05,
-    "prev_close": 423.2,
-    "intraday_pct": 1.15,
+  "AACM848071|IDEA": {
+    "account": "Baby",
+    "stock": "IDEA",
+    "qty": 1,
+    "avg": 13.04,
+    "ltp": 11.62,
+    "prev_close": 11.6,
+    "intraday_pct": 0.17,
     "milestone": 0
   },
   "AACM846943|IDEA": {
@@ -1296,9 +1276,9 @@
     "stock": "IDEA",
     "qty": 1,
     "avg": 13.05,
-    "ltp": 11.61,
+    "ltp": 11.62,
     "prev_close": 11.6,
-    "intraday_pct": 0.09,
+    "intraday_pct": 0.17,
     "milestone": 0
   },
   "AACM846943|HDBFS": {
@@ -1306,9 +1286,9 @@
     "stock": "HDBFS",
     "qty": 20,
     "avg": 569.4,
-    "ltp": 550.25,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "AACM846943|TRUALT": {
@@ -1316,9 +1296,29 @@
     "stock": "TRUALT",
     "qty": 29,
     "avg": 343.61,
-    "ltp": 318.0,
+    "ltp": 318.55,
     "prev_close": 315.35,
-    "intraday_pct": 0.84,
+    "intraday_pct": 1.01,
+    "milestone": 0
+  },
+  "AACM846943|MONEYVIEW": {
+    "account": "Sandeep Singharia",
+    "stock": "MONEYVIEW",
+    "qty": 444,
+    "avg": 59.07,
+    "ltp": 54.0,
+    "prev_close": 54.0,
+    "intraday_pct": 0.0,
+    "milestone": 0
+  },
+  "AACM846943|IGIL": {
+    "account": "Sandeep Singharia",
+    "stock": "IGIL",
+    "qty": 35,
+    "avg": 430.56,
+    "ltp": 427.6,
+    "prev_close": 423.2,
+    "intraday_pct": 1.04,
     "milestone": 0
   },
   "AACM853089|RBA": {
@@ -1326,9 +1326,9 @@
     "stock": "RBA",
     "qty": 1,
     "avg": 90.19,
-    "ltp": 88.12,
+    "ltp": 88.13,
     "prev_close": 87.82,
-    "intraday_pct": 0.34,
+    "intraday_pct": 0.35,
     "milestone": 0
   },
   "AACM853089|IDEA": {
@@ -1336,9 +1336,9 @@
     "stock": "IDEA",
     "qty": 1,
     "avg": 13.04,
-    "ltp": 11.6,
+    "ltp": 11.62,
     "prev_close": 11.6,
-    "intraday_pct": 0.0,
+    "intraday_pct": 0.17,
     "milestone": 0
   },
   "AACM853089|HDBFS": {
@@ -1346,9 +1346,9 @@
     "stock": "HDBFS",
     "qty": 20,
     "avg": 566.4,
-    "ltp": 550.6,
+    "ltp": 550.7,
     "prev_close": 551.7,
-    "intraday_pct": -0.2,
+    "intraday_pct": -0.18,
     "milestone": 0
   },
   "AAAH788468|HDBFS": {
@@ -1356,39 +1356,9 @@
     "stock": "HDBFS",
     "qty": 58,
     "avg": 569.27,
-    "ltp": 550.25,
+    "ltp": 550.35,
     "prev_close": 551.7,
-    "intraday_pct": -0.26,
-    "milestone": 0
-  },
-  "AAAA932378|BAJAJHFL": {
-    "account": "ATMA RAM",
-    "stock": "BAJAJHFL",
-    "qty": 4,
-    "avg": 83.01,
-    "ltp": 80.17,
-    "prev_close": 80.19,
-    "intraday_pct": -0.02,
-    "milestone": 0
-  },
-  "AAAA932378|ANGELONE": {
-    "account": "ATMA RAM",
-    "stock": "ANGELONE",
-    "qty": 216,
-    "avg": 295.96,
-    "ltp": 379.6,
-    "prev_close": 358.0,
-    "intraday_pct": 6.03,
-    "milestone": 5
-  },
-  "AAAA932378|HDBFS": {
-    "account": "ATMA RAM",
-    "stock": "HDBFS",
-    "qty": 52,
-    "avg": 592.84,
-    "ltp": 550.25,
-    "prev_close": 551.7,
-    "intraday_pct": -0.26,
+    "intraday_pct": -0.24,
     "milestone": 0
   },
   "AAAA932378|TRUALT": {
@@ -1396,9 +1366,9 @@
     "stock": "TRUALT",
     "qty": 30,
     "avg": 496.0,
-    "ltp": 318.0,
+    "ltp": 318.55,
     "prev_close": 315.35,
-    "intraday_pct": 0.84,
+    "intraday_pct": 1.01,
     "milestone": 0
   },
   "AAAA932378|MONEYVIEW": {
@@ -1406,9 +1376,39 @@
     "stock": "MONEYVIEW",
     "qty": 442,
     "avg": 34.04,
-    "ltp": 53.9,
+    "ltp": 54.0,
     "prev_close": 54.0,
-    "intraday_pct": -0.19,
+    "intraday_pct": 0.0,
+    "milestone": 0
+  },
+  "AAAA932378|BAJAJHFL": {
+    "account": "ATMA RAM",
+    "stock": "BAJAJHFL",
+    "qty": 4,
+    "avg": 83.01,
+    "ltp": 80.24,
+    "prev_close": 80.19,
+    "intraday_pct": 0.06,
+    "milestone": 0
+  },
+  "AAAA932378|ANGELONE": {
+    "account": "ATMA RAM",
+    "stock": "ANGELONE",
+    "qty": 216,
+    "avg": 295.96,
+    "ltp": 379.8,
+    "prev_close": 358.0,
+    "intraday_pct": 6.09,
+    "milestone": 5
+  },
+  "AAAA932378|HDBFS": {
+    "account": "ATMA RAM",
+    "stock": "HDBFS",
+    "qty": 52,
+    "avg": 592.84,
+    "ltp": 550.7,
+    "prev_close": 551.7,
+    "intraday_pct": -0.18,
     "milestone": 0
   }
 }
